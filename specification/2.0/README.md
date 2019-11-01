@@ -2,22 +2,20 @@
 <img src="../figures/gltf.png" />
 </p>
 
-*버전 2.0 (이 번역본은 참고용으로만 사용하기 바랍니다*
+*버전 2.0 (이 번역본은 참고용으로만 사용하기 바랍니다)*
 
 GL Transmission Format (glTF)은 API에 중립적인 실행(runtime) 자산(asset) 전송 포맷이다. glTF는 효율적이고, 확장가능하며, 상호운용성을 갖춘 전송 및 로딩 포맷을 제공함으로써 3D 컨텐츠 생성 도구와 최신 3D 응용간에 교량 역할을 한다. 
 
 Last Updated: June 9, 2017 (번역원문) / 2019년 11월 1일 최종 (번역 갱신)
 
-편집 
-Editors
+편집 (Editors)
 
 * Saurabh Bhatia, Microsoft
 * Patrick Cozzi, Cesium
 * Alexey Knyazev, Individual Contributor
 * Tony Parisi, Unity
 
-크로노스 3D Formats 워킹그룹 및 전의장단
-Khronos 3D Formats Working Group and Alumni
+크로노스 3D Formats 워킹그룹 및 전의장단 (Khronos 3D Formats Working Group and Alumni)
 
 * Remi Arnaud, Starbreeze Studios
 * Emiliano Gambaretto, Adobe
@@ -112,10 +110,12 @@ GL Transmission Format (glTF)은 API에 중립적인 실행(runtime) 자산(asse
 *이 절은 규격내용이 아닌 참고 정보임 (non-normative)*
 
 Traditional 3D modeling formats have been designed to store data for offline use, primarily to support authoring workflows on desktop systems. Industry-standard 3D interchange formats allow for sharing assets between different modeling tools, and within the content pipeline in general. However, neither of these types of formats is optimized for download speed or fast loading at runtime. Files tend to grow very large, and applications need to do a significant amount of processing to load such assets into GPU-accelerated applications.
-전통적인 3D 모델링 포맷은 오프라인에서 사용 특히, 데스크탑 환경에서의 저작 작업흐름을 위한 저장 포맷으로 디자인 되었다. 
 
+전통적인 3D 모델링 포맷은 오프라인에서 사용 특히, 데스크탑 환경에서의 저작 작업흐름을 위한 저장 포맷으로 디자인 되었다. 산업계 3차원 데이터 교환 포맷 표준은 서로 다른 모델링 도구간 혹은 컨텐츠 파이프라인 내에서의 어셋을 공유하도록 해준다. 하지만, 이러한 포맷 표준 중에 다운로드 속도나 실행시의 로딩 시간에 최저화된 표준은 없다. 파일들은 매우 큰 크기로 증가하고, 응용 프로그램이 어셋을 GPU 가속 응용 프로그램으로 로딩하는데 많은 양의 처리를 요구한다. 
 
 Applications seeking high performance rarely load modeling formats directly; instead, they process models offline as part of a custom content pipeline, converting the assets into a proprietary format optimized for their runtime application.  This has led to a fragmented market of incompatible proprietary runtime formats and duplicated efforts in the content creation pipeline. 3D assets exported for one application cannot be reused in another application without going back to the original modeling, tool-specific source and performing another proprietary export step.
+
+응용 프로그램은 고성능 
 
 With the advent of mobile- and web-based 3D computing, new classes of applications have emerged that require fast, dynamic loading of standardized 3D assets. Digital marketing solutions, e-commerce product visualizations, and online model-sharing sites are just a few of the connected 3D applications being built today using WebGL or OpenGL ES. Beyond the need for efficient delivery, many of these online applications can benefit from a standard, interoperable format to enable sharing and reuse of assets between users, between applications, and within heterogeneous, distributed content pipelines.
 
