@@ -8,13 +8,15 @@ GL Transmission Format (glTF)은 API에 중립적인 실행(runtime) 자산(asse
 
 Last Updated: June 9, 2017 (번역원문) / 2019년 11월 1일 최종 (번역 갱신)
 
-편집 (Editors)
+편집 
+Editors
 
 * Saurabh Bhatia, Microsoft
 * Patrick Cozzi, Cesium
 * Alexey Knyazev, Individual Contributor
 * Tony Parisi, Unity
 
+크로노스 3D Formats 워킹그룹 및 전의장단
 Khronos 3D Formats Working Group and Alumni
 
 * Remi Arnaud, Starbreeze Studios
@@ -37,7 +39,7 @@ Hwanyong Lee, Ajou University (이환용)
 
 Copyright (C) 2013-2017 The Khronos Group Inc. All Rights Reserved. glTF is a trademark of The Khronos Group Inc.
 
-# Contents
+# 목차 Contents
 
 * [개요](#개요)
   * [Motivation](#motivation)
@@ -103,13 +105,15 @@ Copyright (C) 2013-2017 The Khronos Group Inc. All Rights Reserved. glTF is a tr
 
 # 개요
 
-The GL Transmission Format (glTF) is an API-neutral runtime asset delivery format.  glTF bridges the gap between 3D content creation tools and modern graphics applications by providing an efficient, extensible, interoperable format for the transmission and loading of 3D content.
+GL Transmission Format (glTF)은 API에 중립적인 실행(runtime) 자산(asset) 전송 포맷이다. glTF는 효율적이고, 확장가능하며, 상호운용성을 갖춘 전송 및 로딩 포맷을 제공함으로써 3D 컨텐츠 생성 도구와 최신 3D 응용간에 교량 역할을 한다. 
 
-## Motivation
+## 동기 (Motivation)
 
-*This section is non-normative.*
+*이 절은 규격내용이 아닌 참고 정보임 (non-normative)*
 
 Traditional 3D modeling formats have been designed to store data for offline use, primarily to support authoring workflows on desktop systems. Industry-standard 3D interchange formats allow for sharing assets between different modeling tools, and within the content pipeline in general. However, neither of these types of formats is optimized for download speed or fast loading at runtime. Files tend to grow very large, and applications need to do a significant amount of processing to load such assets into GPU-accelerated applications.
+전통적인 3D 모델링 포맷은 오프라인에서 사용 특히, 데스크탑 환경에서의 저작 작업흐름을 위한 저장 포맷으로 디자인 되었다. 
+
 
 Applications seeking high performance rarely load modeling formats directly; instead, they process models offline as part of a custom content pipeline, converting the assets into a proprietary format optimized for their runtime application.  This has led to a fragmented market of incompatible proprietary runtime formats and duplicated efforts in the content creation pipeline. 3D assets exported for one application cannot be reused in another application without going back to the original modeling, tool-specific source and performing another proprietary export step.
 
