@@ -2,13 +2,13 @@
 <img src="../figures/gltf.png" />
 </p>
 
-*Version 2.0*
+*버전 2.0 (이 번역본은 참고용으로만 사용하기 바랍니다*
 
-The GL Transmission Format (glTF) is an API-neutral runtime asset delivery format.  glTF bridges the gap between 3D content creation tools and modern 3D applications by providing an efficient, extensible, interoperable format for the transmission and loading of 3D content.
+GL Transmission Format (glTF)은 API에 중립적인 실행(runtime) 자산(asset) 전송 포맷이다. glTF는 효율적이고, 확장가능하며, 상호운용성을 갖춘 전송 및 로딩 포맷을 제공함으로써 3D 컨텐츠 생성 도구와 최신 3D 응용간에 교량 역할을 한다. 
 
-Last Updated: June 9, 2017
+Last Updated: June 9, 2017 (번역원문) / 2019년 11월 1일 최종 (번역 갱신)
 
-Editors
+편집 (Editors)
 
 * Saurabh Bhatia, Microsoft
 * Patrick Cozzi, Cesium
@@ -32,11 +32,14 @@ Khronos 3D Formats Working Group and Alumni
 * Jan Paul Van Waveren, Oculus
 * Amanda Watson, Oculus
 
+번역 (Translation)
+Hwanyong Lee, Ajou University (이환용)
+
 Copyright (C) 2013-2017 The Khronos Group Inc. All Rights Reserved. glTF is a trademark of The Khronos Group Inc.
 
 # Contents
 
-* [Introduction](#introduction)
+* [개요](#개요)
   * [Motivation](#motivation)
   * [glTF Basics](#gltf-basics)
   * [Design Goals](#design-goals)
@@ -98,7 +101,7 @@ Copyright (C) 2013-2017 The Khronos Group Inc. All Rights Reserved. glTF is a tr
 * [Appendix C: Spline Interpolation](#appendix-c-spline-interpolation)
 * [Appendix D: Full Khronos Copyright Statement](#appendix-d-full-khronos-copyright-statement)
 
-# Introduction
+# 개요
 
 The GL Transmission Format (glTF) is an API-neutral runtime asset delivery format.  glTF bridges the gap between 3D content creation tools and modern graphics applications by providing an efficient, extensible, interoperable format for the transmission and loading of 3D content.
 
