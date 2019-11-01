@@ -8,12 +8,13 @@
 glTF™ (GL Transmission Format) 는 로열티 없는 표준으로서 3차원 장면과 모델 데이터를 효율적으로 응용간에 전송하고 로딩할 수 있도록 해준다. glTF는 3차원 어셋의 크기와 이 어셋을 을 풀기 위해 필요한 처리 시간 모두를 최적화 해 준다. glTF 표준은 확장성을 제공하며, 3차원 콘텐츠 도구와 서비스들을 위한 일반적인 퍼블리싱 포맷을 정의함으로써, 저작 작업흐름을 단순화 시켜 주며, 산업간 컨텐츠 상호운용성을 제공하여 준다. 
 
 ## 표준 (Specification)
-
+**이 번역은 참고 목적으로만 사용하기 바랍니다.**
 * [glTF Specification, 2.0](specification/2.0/README.md) (or [all specification versions](specification/README.md))
 * [glTF Extension Registry](extensions/README.md)
 
 Please provide spec feedback by submitting [issues](https://github.com/KhronosGroup/glTF/issues). For technical or art workflow questions, or to showcase your work, [join the glTF forum](https://community.khronos.org/c/gltf-general). For quick questions, use the `#gltf` channel in the Khronos Group [Slack](https://www.khronos.org/news/permalink/khronos-developer-slack-5bfc62eb261764.20435008).
 표준에 대한 의견이 있는 경우 [issues](https://github.com/KhronosGroup/glTF/issues)에 제출바랍니다. 기술적인 문제 혹은 워크플로에 대한 질문, 본인의 사례를 소개하고 싶다면 [join the glTF forum](https://community.khronos.org/c/gltf-general)를 이용하기 바랍니다. 간단한 질문이라면 슬랙 [Slack](https://www.khronos.org/news/permalink/khronos-developer-slack-5bfc62eb261764.20435008)에서 `#gltf` 채널을 이용하기 바랍니다. 
+번역에 대한 의견이 있을 경우, 여기에 의견을 주십시오. 
 
 ## 간략 소개 (Quickstart)
 
