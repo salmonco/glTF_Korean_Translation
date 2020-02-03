@@ -114,8 +114,7 @@ Traditional 3D modeling formats have been designed to store data for offline use
 전통적인 3D 모델링 포맷은 오프라인에서 사용 특히, 데스크탑 환경에서의 저작 작업흐름을 위한 저장 포맷으로 디자인 되었다. 산업계 3차원 데이터 교환 포맷 표준은 서로 다른 모델링 도구간 혹은 컨텐츠 파이프라인 내에서의 어셋을 공유하도록 해준다. 하지만, 이러한 포맷 표준 중에 다운로드 속도나 실행시의 로딩 시간에 최저화된 표준은 없다. 파일들은 매우 큰 크기로 증가하고, 응용 프로그램이 어셋을 GPU 가속 응용 프로그램으로 로딩하는데 많은 양의 처리를 요구한다. 
 
 Applications seeking high performance rarely load modeling formats directly; instead, they process models offline as part of a custom content pipeline, converting the assets into a proprietary format optimized for their runtime application.  This has led to a fragmented market of incompatible proprietary runtime formats and duplicated efforts in the content creation pipeline. 3D assets exported for one application cannot be reused in another application without going back to the original modeling, tool-specific source and performing another proprietary export step.
-
-응용 프로그램은 고성능 
+고성능을 필요로하는 응용 프로그램은 모딜링 포맷을 직접 로딩하는 경우가 드믈다. 대신, 모델을 전용 컨텐츠 파이프라인의 일부로서 모델을 처리하고, 이를 해당 런타임 응용에 최적화된 전용 포맷으로 변경하여 사용하게 된다.  이로 인해 호환되지 않는 전용 런타임 형식으로 파편화된 시장과 콘텐츠 제작 파이프 라인에서 노력이 중복되었다. 한 응용 프로그램으로 내 보낸 3D 자산은 원래 모델링, 도구 별 소스로 돌아가서 다른 독점 내보내기 단계를 수행하지 않고 다른 응용 프로그램에서 재사용 할 수 없었다.
 
 With the advent of mobile- and web-based 3D computing, new classes of applications have emerged that require fast, dynamic loading of standardized 3D assets. Digital marketing solutions, e-commerce product visualizations, and online model-sharing sites are just a few of the connected 3D applications being built today using WebGL or OpenGL ES. Beyond the need for efficient delivery, many of these online applications can benefit from a standard, interoperable format to enable sharing and reuse of assets between users, between applications, and within heterogeneous, distributed content pipelines.
 
