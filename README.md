@@ -5,14 +5,14 @@
 [![Join the Slack group](https://img.shields.io/badge/chat-on%20slack-blue.svg)](https://www.khronos.org/news/permalink/khronos-developer-slack-5bfc62eb261764.20435008)
 [![Join the forums](https://img.shields.io/badge/discuss-in%20forums-blue.svg)](https://community.khronos.org/c/gltf-general)
 
-glTF™ (GL Transmission Format) 는 로열티 없는 표준으로서 3차원 장면과 모델 데이터를 효율적으로 응용간에 전송하고 로딩할 수 있도록 해준다. glTF는 3차원 어셋의 크기와 이 어셋을 을 풀기 위해 필요한 처리 시간 모두를 최적화 해 준다. glTF 표준은 확장성을 제공하며, 3차원 콘텐츠 도구와 서비스들을 위한 일반적인 퍼블리싱 포맷을 정의함으로써, 저작 작업흐름을 단순화 시켜 주며, 산업간 컨텐츠 상호운용성을 제공하여 준다. 
+glTF™ (GL Transmission Format) 는 로열티 없는 표준으로서 3차원 장면과 모델 데이터를 효율적으로 응용간에 전송하고 로딩할 수 있도록 해줍니다. glTF는 3차원 어셋의 크기와 이 어셋을 을 풀기 위해 필요한 처리 시간 모두를 최적화 해 줍니다. glTF 표준은 확장성을 제공하며, 3차원 콘텐츠 도구와 서비스들을 위한 일반적인 퍼블리싱 포맷을 정의함으로써, 저작 작업흐름을 단순화 시켜 주며, 산업간 컨텐츠 상호운용성을 제공하여 줍니다. 
 
 ## 표준 (Specification)
 **이 번역은 참고 목적으로만 사용하기 바랍니다.**
 * [glTF Specification, 2.0](specification/2.0/README.md) (or [all specification versions](specification/README.md))
 * [glTF Extension Registry](extensions/README.md)
 
-Please provide spec feedback by submitting [issues](https://github.com/KhronosGroup/glTF/issues). For technical or art workflow questions, or to showcase your work, [join the glTF forum](https://community.khronos.org/c/gltf-general). For quick questions, use the `#gltf` channel in the Khronos Group [Slack](https://www.khronos.org/news/permalink/khronos-developer-slack-5bfc62eb261764.20435008).
+
 표준에 대한 의견이 있는 경우 [issues](https://github.com/KhronosGroup/glTF/issues)에 제출바랍니다. 기술적인 문제 혹은 워크플로에 대한 질문, 본인의 사례를 소개하고 싶다면 [join the glTF forum](https://community.khronos.org/c/gltf-general)를 이용하기 바랍니다. 간단한 질문이라면 슬랙 [Slack](https://www.khronos.org/news/permalink/khronos-developer-slack-5bfc62eb261764.20435008)에서 `#gltf` 채널을 이용하기 바랍니다. 
 번역에 대한 의견이 있을 경우, 여기에 의견을 주십시오. 
 
@@ -34,32 +34,32 @@ Please provide spec feedback by submitting [issues](https://github.com/KhronosGr
 </p>
 
 
-### For developers
+### 개발자 도구 (for developers)
 
-* [Sample models](https://github.com/KhronosGroup/glTF-Sample-Models) for testing runtime engines and content pipeline tools.
-   * [glTF-Asset-Generator](https://github.com/bghgary/glTF-Asset-Generator) provides assets for robust importer validation.
-   * [100,000+ models](https://sketchfab.com/models?features=downloadable&sort_by=-likeCount) under Creative Commons license on Sketchfab (check license for individual models).
-* [Drag-and-drop validator](http://github.khronos.org/glTF-Validator/) for verifying correctness of existing glTF files.
-* [glTF Tutorial Series](https://github.com/KhronosGroup/glTF-Tutorials/blob/master/gltfTutorial/README.md)
-* [Khronos glTF Sample Viewer](http://github.khronos.org/glTF-Sample-Viewer/) with WebGL PBR shaders. ([source code](https://github.com/KhronosGroup/glTF-Sample-Viewer))
+* [Sample models](https://github.com/KhronosGroup/glTF-Sample-Models) 런타임 엔진과 컨텐츠 파이프라인 도구를 테스트 하기 위한 샘플 모델.
+   * [glTF-Asset-Generator](https://github.com/bghgary/glTF-Asset-Generator) 가져오기기능의 검증을 위한 도구.
+   * [100,000+ models](https://sketchfab.com/models?features=downloadable&sort_by=-likeCount) Sketchfab의 모델 중 (CC, Creative Common) 라이센스인 모델 (각 모델의 라이센스를 확인할 것).
+* [Drag-and-drop validator](http://github.khronos.org/glTF-Validator/) glTF 파일의 정확성을 검증.
+* [glTF Tutorial Series](https://github.com/KhronosGroup/glTF-Tutorials/blob/master/gltfTutorial/README.md) 튜토리얼 시리즈
+* [Khronos glTF Sample Viewer](http://github.khronos.org/glTF-Sample-Viewer/) PBR쉐이더를 포함하는 glTF 샘플 뷰어 ([source code](https://github.com/KhronosGroup/glTF-Sample-Viewer))
 
-### For artists
+### 아티스트 도구 (for artists)
 
 - [Blender importer/exporter](https://github.com/KhronosGroup/glTF-Blender-IO)
 - [3DS Max exporter](http://doc.babylonjs.com/resources/3dsmax_to_gltf)
 - [Maya exporter](https://github.com/WonderMediaProductions/Maya2glTF)
 - [Other converters and exporters](#converters-importers-and-exporters)
 
-### Preview tools
+### 미리보기 도구 (Preview tools)
 
   - [Sketchfab](https://sketchfab.com/)
   - [BabylonJS Sandbox](https://www.babylonjs.com/sandbox/)
   - [Drag-and-drop viewer](https://gltf-viewer.donmccurdy.com/)
   - [glTF VSCode Extension](https://marketplace.visualstudio.com/items?itemName=cesium.gltf-vscode) 3D previews, glTF validation, conversion to/from GLB
 
-## Contents
+## 목차 (Contents)
 
-- [glTF Tools](#gltf-tools)
+- [glTF 도구](#gltf-tools)
     - [Converters, Importers, and Exporters](#converters-importers-and-exporters)
     - [Optimizers](#optimizers)
     - [Validators](#validators)
@@ -93,11 +93,11 @@ Please provide spec feedback by submitting [issues](https://github.com/KhronosGr
     - [Tutorials](#tutorials)
     - [All Presentations and Articles](#all-presentations-and-articles)
 
-## glTF Tools
+## glTF 도구
 
-### Converters, Importers, and Exporters
+### 변환기 (Converters), 가져오기 (Importers), 내보내기 (Exporters)
 
-| Tool | Input | Output | Description |
+| 도구 | 입력 | 출력 | 설명 |
 |------|-------|--------|-------------|
 | [Khronos Group Blender Importer/Exporter](https://github.com/KhronosGroup/glTF-Blender-IO) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Official importer/exporter, included with Blender 2.80 and higher |
 | [3DS Max Exporter](http://doc.babylonjs.com/resources/3dsmax_to_gltf) | — | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Export glTF files using [BabylonJS plugin](http://doc.babylonjs.com/resources/3dsmax#how-to-install-the-3ds-max-plugin) for 3DS Max 2015 or later |
@@ -135,9 +135,9 @@ Please provide spec feedback by submitting [issues](https://github.com/KhronosGr
 | [Revit glTF Exporter add-in](https://apps.autodesk.com/RVT/en/Detail/Index?id=8451869436709222290)| — | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Paid add-in to export glTF from Autodesk Revit 2019 or later |
 | [Adobe Animate](https://www.adobe.com/products/animate.html)| — | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Publish 2D animations to glTF/glb using Animate 2019 or later. Also create 360 degree VR content and embed 3D glb assets in the scene. |
 
-### Optimizers
+### 최적화 (Optimizer)
 
-| Tool | Status | Description |
+| 도구 | 상태 | 설명 |
 |------|--------|-------------|
 | [gltf-import-export](https://github.com/najadojo/gltf-import-export) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | NPM package to convert between glb and gltf files |
 | [makeglb](https://github.com/sbtron/makeglb) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Drag and drop browser tool to convert gltf to self contained binary glb |
@@ -146,16 +146,16 @@ Please provide spec feedback by submitting [issues](https://github.com/KhronosGr
 | [gltf2glb](https://github.com/Geopipe/gltf2glb) | ![status](https://img.shields.io/badge/glTF-1%2E0-yellow.svg?style=flat) | Python tool to convert glTF to Binary glTF |
 | [binary-gltf-utils](https://github.com/Qantas94Heavy/binary-gltf-utils) | ![status](https://img.shields.io/badge/glTF-1%2E0-yellow.svg?style=flat) | Node.js tool to convert glTF to Binary glTF |
 
-### Validators
+### 검증 (Validator)
 
-| Tool | Status | Description |
+| 도구 | 상태 | 설명 |
 |------|--------|-------------|
 | [glTF Validator](https://github.com/KhronosGroup/glTF-Validator) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Official command-line and drag-and-drop tool to validate glTF assets against the specification |
 | [glTF VSCode Extension](https://marketplace.visualstudio.com/items?itemName=cesium.gltf-vscode) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | 3D previews, built-in official glTF Validator, conversion to/from GLB |
 
-### Viewers and Debugging
+### 뷰어와 디버깅 (Viewers and Debugging)
 
-| Tool | Status | Description |
+| 도구 | 상태 | 설명 |
 |------|--------|-------------|
 | [BabylonJS Sandbox](https://www.babylonjs.com/sandbox/) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Drag-and-drop online viewer for model preview and debugging, using BabylonJS |
 | [three.js glTF Viewer](https://gltf-viewer.donmccurdy.com/) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Drag-and-drop viewer (web and [desktop](https://github.com/donmccurdy/three-gltf-viewer#gltf-viewer)) for model preview and debugging, using three.js |
@@ -172,9 +172,9 @@ Please provide spec feedback by submitting [issues](https://github.com/KhronosGr
 | [Diligent GLTF Viewer](https://github.com/DiligentGraphics/DiligentSamples/tree/master/Samples/GLTFViewer) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Cross-platform GLTF PBR viewer with multiple rendering back-ends|
 
 
-### Applications
+### 응용 (Applications)
 
-| Application | Status | Description |
+| Application | 상태 | 설명 |
 |-------------|--------|-------------|
 | [Blender 2.80](https://www.blender.org/) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Khronos glTF importer/exporter ships with Blender 2.80 and higher |
 | [Paint 3D](https://www.microsoft.com/en-us/store/p/paint-3d/9nblggh5fv99) by Microsoft | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | 3D creation tool |
@@ -194,13 +194,13 @@ Please provide spec feedback by submitting [issues](https://github.com/KhronosGr
 | [Esri CityEngine](https://www.esri.com/en-us/arcgis/products/esri-cityengine/overview) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Advanced 3D city design software supports glTF to [import](https://doc.arcgis.com/en/cityengine/latest/help/help-import-gltf.htm) and [export](https://doc.arcgis.com/en/cityengine/latest/help/help-export-gltf.htm) |
 | [ArcGIS Pro](https://pro.arcgis.com) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Desktop GIS for 2D and 3D and supports usage of [glTF content](https://pro.arcgis.com/en/pro-app/help/mapping/layer-properties/gltf-markers.htm) as markers in 3D. |
 
-### Loaders and Engines
+### 로더와 엔진 (Loaders and Engines)
 
-#### WebGL Engines
+#### WebGL 엔진
 
 To compare WebGL-based glTF loaders, see [gltf-test](https://github.com/cx20/gltf-test).
 
-| Engine | Status | Scope | Related |
+| Engine | 상태 | Scope | Related |
 |--------|--------|-------|-------------|
 | [three.js](https://threejs.org/) ([loader](https://threejs.org/docs/index.html#examples/loaders/GLTFLoader)) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | All | [`<model-viewer/>` component](https://github.com/GoogleWebComponents/model-viewer/), [drag-and-drop viewer](https://gltf-viewer.donmccurdy.com/) |
 | [BabylonJS](https://www.babylonjs.com/) ([loader](https://github.com/BabylonJS/Babylon.js/tree/master/loaders/src/glTF)) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | All | [Viewer component](http://doc.babylonjs.com/extensions/the_babylon_viewer)|
@@ -222,15 +222,15 @@ To compare WebGL-based glTF loaders, see [gltf-test](https://github.com/cx20/glt
 | [RedGL](https://github.com/redcamel/RedGL2/) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | All | [Examples](https://redcamel.github.io/RedGL2/example) |
 | [Ashes](https://github.com/but0n/Ashes) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | All | [Examples](https://codepen.io/but0n/pen/jddYoX) |
 
-#### WebGL Sample Code
+#### WebGL 샘플 코드
 
-| Sample | Status | Description |
+| Sample | 상태 | 설명 |
 |--------|--------|-------------|
 | [Khronos glTF Sample Viewer](http://github.khronos.org/glTF-Sample-Viewer/) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Engine-agnostic sample viewer with WebGL PBR shader for glTF 2.0 ([source code](https://github.com/KhronosGroup/glTF-Sample-Viewer)) |
 
-#### Game and Rendering Engines
+#### 게임과 렌더링 엔진
 
-| Tool | Status | Description |
+| 도구 | 상태 | 설명 |
 |------|--------|-------------|
 | [UnityGLTF](https://github.com/KhronosGroup/UnityGLTF) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Unity3D library for exporting, loading, parsing, and rendering glTF assets |
 | [GLTFUtility](https://github.com/Siccity/GLTFUtility) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | glTF 2.0 loader plugin for Unity3D |
@@ -242,20 +242,20 @@ To compare WebGL-based glTF loaders, see [gltf-test](https://github.com/cx20/glt
 | [LÖVR](https://lovr.org) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | A framework for creating VR with Lua |
 | [LibGDX glTF](https://github.com/mgsx-dev/gdx-gltf) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | [LibGDX](https://libgdx.badlogicgames.com/) library for loading and rendering glTF assets |
 
-#### Embeddable Viewers
+#### 임베디드 뷰어 (Embedded Viwer)
 
-| Tool                                                                         | Author    | Type        | Description                                                                                                                                                                      |
-|------------------------------------------------------------------------------|-----------|-------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 도구                                                                         | 저자    | 유형        | 설명                                                                                                                                                                      |
+|------------------------------------------------------------------------------|-----------|-------------|-------------------------------------------------------------------------------------------------------------------------------|
 | [Babylon.js Viewer](https://doc.babylonjs.com/extensions/the_babylon_viewer) | BabylonJS | self-hosted | HTML web component for viewing self-hosted glTF models.                                                                                                                          |
 | [&lt;model-viewer>](https://github.com/GoogleWebComponents/model-viewer)     | Google    | self-hosted | HTML web component for viewing self-hosted glTF models.                                                                                                                          |
 | [Poly](https://poly.google.com/)                                             | Google    | service     | glTF models hosted on Poly may be embedded in an iframe on any site.                                                                                                             |
 | [Sketchfab](https://sketchfab.com/)                                          | Sketchfab | service     | glTF models hosted on Sketchfab may be embedded in an iframe on any site, using the [embed models](https://help.sketchfab.com/hc/en-us/articles/203509907-Embed-Models) feature. |
 
-### Languages
+### 언어
 
 #### JavaScript / Node.js
 
-| Tool | Status | Description |
+| 도구 | 상태 | 설명 |
 |------|--------|-------------|
 | [gltf-viewer](https://github.com/avgp/gltf-viewer) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Web component to display glTF models on a website |
 | [minimal-gltf-loader](https://github.com/shrekshao/minimal-gltf-loader) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | A minimal, engine-agnostic JavaScript glTF Loader, with a raw WebGL 2 renderer example |
@@ -267,7 +267,7 @@ To compare WebGL-based glTF loaders, see [gltf-test](https://github.com/cx20/glt
 
 #### C++
 
-| Tool | Status | Description |
+| 도구 | 상태 | 설명 |
 |------|--------|-------------|
 | [Tiny glTF loader](https://github.com/syoyo/tinygltf) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat)  | Header only C++ glTF parsing library, with [Alembic→glTF](https://github.com/syoyo/tinygltfloader/tree/master/examples/alembic_to_gltf) and [CyHair->glTF](https://github.com/syoyo/tinygltfloader/tree/master/examples/cyhair_to_gltf) converters |
 | [yocto-gltf](https://github.com/xelatihy/yocto-gl) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Single file, header only, C++ glTF loading/writing automatically generated from the spec |
@@ -290,13 +290,13 @@ To compare WebGL-based glTF loaders, see [gltf-test](https://github.com/cx20/glt
 
 #### Objective-C
 
-| Tool | Status | Description |
+| 도구 | 상태 | 설명 |
 |------|--------|-------------|
 | [GLTFKit](https://github.com/warrenm/GLTFKit) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | An Objective-C glTF 2.0 loader and Metal-based renderer |
 
 #### C#
 
-| Tool | Status | Description |
+| 도구 | 상태 | 설명 |
 |------|--------|-------------|
 | [C# glTF loader](https://github.com/KhronosGroup/glTF-CSharp-Loader) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | C# reference loader for glTF |
 | [Aspose.3D for .NET](http://www.aspose.com/products/3d/net) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat)| Import, export, and convert glTF |
@@ -306,28 +306,28 @@ To compare WebGL-based glTF loaders, see [gltf-test](https://github.com/cx20/glt
 
 #### C
 
-| Tool | Status | Description |
+| 도구 | 상태 | 설명 |
 |------|--------|-------------|
 | [AssetKit](https://github.com/recp/assetkit) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | 3D asset importer, exporter library. |
 | [cgltf](https://github.com/jkuhlmann/cgltf) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Single-header C glTF loader. |
 
 #### Go
 
-| Tool | Status | Description |
+| 도구 | 상태 | 설명 |
 |------|--------|-------------|
 | [gltf](https://github.com/sturfeeinc/glTF) | ![status](https://img.shields.io/badge/glTF-1%2E0-yellow.svg?style=flat) | go library for marshaling and unmarshaling glTF |
 | [gltf 2.0](https://github.com/qmuntal/gltf) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | A Go glTF 2.0 writer, reader and validator |
 
 #### Rust
 
-| Tool | Status | Description |
+| 도구 | 상태 | 설명 |
 |------|--------|-------------|
 | [Loader](https://github.com/gltf-rs/gltf) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | A crate for loading glTF 2.0 |
 | [Viewer](https://github.com/bwasty/gltf-viewer) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | glTF 2.0 Viewer written in Rust |
 
 #### Haxe
 
-| Tool | Status | Description |
+| 도구 | 상태 | 설명 |
 |------|--------|-------------|
 | [haxe-gltf](https://github.com/FuzzyWuzzie/haxe-gltf) | ![status](https://img.shields.io/badge/glTF-1%2E0-yellow.svg?style=flat) | A Haxe library for reading glTF |
 
@@ -346,45 +346,45 @@ To compare WebGL-based glTF loaders, see [gltf-test](https://github.com/cx20/glt
   * [jgltf-browser](https://github.com/javagl/JglTF/tree/master/jgltf-browser) - Application combining the above libraries
   * [jgltf-validator](https://github.com/javagl/JglTF/tree/master/jgltf-validator) - Simple glTF validator, only intended for internal use
   
-| Tool | Status | Description |
+| 도구 | 상태 | 설명 |
 |------|--------|-------------|
 | [JglTF-mesh](https://github.com/chadj2/jgltf-mesh) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Generate glTF meshes and geometry in Java |
 
 #### Ada
 
-| Tool | Status | Description |
+| 도구 | 상태 | 설명 |
 |------|--------|-------------|
 | [Orka](https://github.com/onox/orka) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | The OpenGL 4.5 Rendering Kernel in Ada |
 
 #### TypeScript
 
-| Tool | Status | Description |
+| 도구 | 상태 | 설명 |
 |------|--------|-------------|
 | [gltf-typescript-generator](https://github.com/robertlong/gltf-typescript-generator) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | CLI to generate a TypeScript interface for glTF |
 
 #### Swift
 
-| Tool | Status | Description |
+| 도구 | 상태 | 설명 |
 |------|--------|-------------|
 | [GLTFSceneKit](https://github.com/magicien/GLTFSceneKit) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | glTF loader for SceneKit |
 
 #### Python
 
-| Tool | Status | Description |
+| 도구 | 상태 | 설명 |
 |------|--------|-------------|
 | [trimesh](https://github.com/mikedh/trimesh) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Python library for importing and exporting glTF and numerous other triangular mesh formats. |
 
-### Utilities
+### 유틸리티
 
 * [gltf-utilities](https://github.com/AnalyticalGraphicsInc/gltf-utilities) - JavaScript utility library to help load glTF
 * [wetzel](https://github.com/AnalyticalGraphicsInc/wetzel) - Generate Markdown documentation from JSON Schema
 * [gltf-enum](http://gltf-enum.com/) - Simple site to help work with all the different enums in glTF spec
 
-### Resources
+### 리소스 (Resources)
 
 * [glTF-Generator-Registry](https://github.com/KhronosGroup/glTF-Generator-Registry/) - An open registry of tools that create glTF assets, along with structured metadata such as links to documentation and bug trackers.
 
-## Formats Built on glTF
+## glTF로 개발된 포맷
 
 * [3D Tiles](https://github.com/AnalyticalGraphicsInc/3d-tiles) - An open standard for streaming and rendering massive heterogenous 3D content.
 
@@ -392,20 +392,20 @@ To compare WebGL-based glTF loaders, see [gltf-test](https://github.com/cx20/glt
 
 * [glTF tagged](http://stackoverflow.com/questions/tagged/gltf) questions
 
-## Presentations and Articles
+## 프레젠테이션과 기사 (Presentations and Articles)
 
-### Intros
+### 개요
 
 * [glTF 2.0 Launch](https://www.khronos.org/assets/uploads/developers/library/2017-web3d/glTF-2.0-Launch_Jun17.pdf) by Neil Trevett. June 2017
 * **glTF Webinar** ([video](https://www.youtube.com/watch?v=KALedPvtFHY), [slides](https://www.khronos.org/assets/uploads/developers/library/2017-glTF-webinar/glTF-Webinar_Feb17.pdf)) by Marco Hutter. February 2017
 * [glTF Brief](https://docs.google.com/presentation/d/1BRdEGqJFIWk3QOehOxJqM9dIE4kIBNQhIm7UeBaVse0/edit#slide=id.g185e245559_2_28) by Tony Parisi, FormVR and Amanda Watson, Oculus. October 2016
 
-### Tutorials
+### 튜토리얼
 
 * [glTF Tutorials](https://github.com/KhronosGroup/glTF-Tutorials)
 * [Physically-Based Rendering: From Theory to glTF](https://github.com/moneimne/glTF-Tutorials/tree/master/PBR)
 
-### All Presentations and Articles
+### 프레젠테이션과 기사 전체
 
 * [glTF Ecosystem Forum during SIGGRAPH](https://www.khronos.org/assets/uploads/developers/library/2019-siggraph/glTF-Ecosystem-Forum-SIGGRAPH_Aug19.pdf).  July 2019
 * [SIGGRAPH 2019 glTF BOF Video](https://youtu.be/_MOp_SfGJx8) and [slides](https://www.khronos.org/developers/library/2019-siggraph)
@@ -528,4 +528,4 @@ To compare WebGL-based glTF loaders, see [gltf-test](https://github.com/cx20/glt
 
 ---
 
-We believe the true usefulness of glTF goes beyond the spec itself; it is an ecosystem of tools, documentation, and extensions contributed by the community.  You are encouraged to [get involved](https://github.com/KhronosGroup/glTF/issues/456)!
+우리는 glTF의 유용성은 표준 그 자체보다 더 중요한 것이 있다고 생각합니다. 그것은 커뮤니티가 제공하는 생태계를 구성하는 도구, 문서, 확장판입니다. 여러분들의 참여를 기대합니다. [참여](https://github.com/KhronosGroup/glTF/issues/456)!
