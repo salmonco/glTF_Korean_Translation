@@ -5,7 +5,7 @@
 [![Join the Slack group](https://img.shields.io/badge/chat-on%20slack-blue.svg)](https://www.khronos.org/news/permalink/khronos-developer-slack-5bfc62eb261764.20435008)
 [![Join the forums](https://img.shields.io/badge/discuss-in%20forums-blue.svg)](https://community.khronos.org/c/gltf-general)
 
-glTF™ (GL Transmission Format) 는 로열티 없는 표준으로서 3차원 장면과 모델 데이터를 효율적으로 응용간에 전송하고 로딩할 수 있도록 해줍니다. glTF는 3차원 어셋의 크기와 이 어셋을 을 풀기 위해 필요한 처리 시간 모두를 최적화 해 줍니다. glTF 표준은 확장성을 제공하며, 3차원 콘텐츠 도구와 서비스들을 위한 일반적인 퍼블리싱 포맷을 정의함으로써, 저작 작업흐름을 단순화 시켜 주며, 산업간 컨텐츠 상호운용성을 제공하여 줍니다. 
+glTF™ (GL Transmission Format) 는 로열티 없는 표준으로서 3차원 장면과 모델 데이터를 효율적으로 응용간에 전송하고 로딩할 수 있도록 해줍니다. glTF는 3차원 어셋의 크기와 이 어셋을 을 풀기 위해 필요한 처리 시간 모두를 최적화 해 줍니다. glTF 표준은 확장성을 제공하며, 3차원 콘텐츠 도구와 서비스들을 위한 일반적인 퍼블리싱 포맷을 정의함으로써, 저작 작업흐름을 단순화 시켜 주며, 산업간 컨텐츠 상호운용성을 제공하여 줍니다.
 
 ## 표준 (Specification)
 **이 번역은 참고 목적으로만 사용하기 바랍니다.**
@@ -13,8 +13,8 @@ glTF™ (GL Transmission Format) 는 로열티 없는 표준으로서 3차원 �
 * [glTF Extension Registry](extensions/README.md)
 
 
-표준에 대한 의견이 있는 경우 [issues](https://github.com/KhronosGroup/glTF/issues)에 제출바랍니다. 기술적인 문제 혹은 워크플로에 대한 질문, 본인의 사례를 소개하고 싶다면 [join the glTF forum](https://community.khronos.org/c/gltf-general)를 이용하기 바랍니다. 간단한 질문이라면 슬랙 [Slack](https://www.khronos.org/news/permalink/khronos-developer-slack-5bfc62eb261764.20435008)에서 `#gltf` 채널을 이용하기 바랍니다. 
-번역에 대한 의견이 있을 경우, 여기에 의견을 주십시오. 
+표준에 대한 의견이 있는 경우 [issues](https://github.com/KhronosGroup/glTF/issues)에 제출바랍니다. 기술적인 문제 혹은 워크플로에 대한 질문, 본인의 사례를 소개하고 싶다면 [join the glTF forum](https://community.khronos.org/c/gltf-general)를 이용하기 바랍니다. 간단한 질문이라면 슬랙 [Slack](https://www.khronos.org/news/permalink/khronos-developer-slack-5bfc62eb261764.20435008)에서 `#gltf` 채널을 이용하기 바랍니다.
+번역에 대한 의견이 있을 경우, 이 프로젝트 이슈에 의견을 주십시오.
 
 ## 간략 소개 (Quickstart)
 
@@ -59,39 +59,46 @@ glTF™ (GL Transmission Format) 는 로열티 없는 표준으로서 3차원 �
 
 ## 목차 (Contents)
 
-- [glTF 도구](#gltf-tools)
-    - [Converters, Importers, and Exporters](#converters-importers-and-exporters)
-    - [Optimizers](#optimizers)
-    - [Validators](#validators)
-    - [Viewers and Debugging](#viewers-and-debugging)
-    - [Applications](#applications)
-    - [Loaders and Engines](#loaders-and-engines)
-        - [WebGL Engines](#webgl-engines)
-        - [WebGL Sample Code](#webgl-sample-code)
-        - [Game and Rendering Engines](#game-and-rendering-engines)
-        - [Embeddable Viewers](#embeddable-viewers)
-    - [Languages](#languages)
-        - [JavaScript / Node.js](#javascript--nodejs)
-        - [C++](#c)
-        - [Objective-C](#objective-c)
-        - [C](#c)
-        - [C#](#c-1)
-        - [Go](#go)
-        - [Rust](#rust)
-        - [Haxe](#haxe)
-        - [Java](#java)
-        - [Ada](#ada)
-        - [TypeScript](#typescript)
-        - [Swift](#swift)
-        - [Python](#python)
-    - [Utilities](#utilities)
-    - [Resources](#resources)
-- [Formats Built on glTF](#formats-built-on-gltf)
+- [표준 (Specification)](#표준-specification)
+- [간략 소개 (Quickstart)](#간략-소개-quickstart)
+  - [개요 (Overview)](#개요-overview)
+  - [개발자 도구 (for developers)](#개발자-도구-for-developers)
+  - [아티스트 도구 (for artists)](#아티스트-도구-for-artists)
+  - [미리보기 도구 (Preview tools)](#미리보기-도구-preview-tools)
+- [목차 (Contents)](#목차-contents)
+- [glTF 도구](#gltf-도구)
+  - [변환기 (Converters), 가져오기 (Importers), 내보내기 (Exporters)](#변환기-converters-가져오기-importers-내보내기-exporters)
+  - [최적화 (Optimizer)](#최적화-optimizer)
+  - [검증 (Validator)](#검증-validator)
+  - [뷰어와 디버깅 (Viewers and Debugging)](#뷰어와-디버깅-viewers-and-debugging)
+  - [응용 (Applications)](#응용-applications)
+  - [로더와 엔진 (Loaders and Engines)](#로더와-엔진-loaders-and-engines)
+    - [WebGL 엔진](#webgl-엔진)
+    - [WebGL 샘플 코드](#webgl-샘플-코드)
+    - [게임과 렌더링 엔진](#게임과-렌더링-엔진)
+    - [임베디드 뷰어 (Embedded Viwer)](#임베디드-뷰어-embedded-viwer)
+  - [언어](#언어)
+    - [JavaScript / Node.js](#javascript-nodejs)
+    - [C++](#c)
+    - [Objective-C](#objective-c)
+    - [C#](#c-1)
+    - [C](#c-2)
+    - [Go](#go)
+    - [Rust](#rust)
+    - [Haxe](#haxe)
+    - [Java](#java)
+    - [Ada](#ada)
+    - [TypeScript](#typescript)
+    - [Swift](#swift)
+    - [Python](#python)
+  - [유틸리티](#유틸리티)
+  - [리소스 (Resources)](#리소스-resources)
+- [glTF로 개발된 포맷](#gltf로-개발된-포맷)
 - [Stack Overflow](#stack-overflow)
-- [Presentations and Articles](#presentations-and-articles)
-    - [Intros](#intros)
-    - [Tutorials](#tutorials)
-    - [All Presentations and Articles](#all-presentations-and-articles)
+- [프레젠테이션과 기사 (Presentations and Articles)](#프레젠테이션과-기사-presentations-and-articles)
+  - [개요](#개요)
+  - [튜토리얼](#튜토리얼)
+  - [프레젠테이션과 기사 전체](#프레젠테이션과-기사-전체)
 
 ## glTF 도구
 
@@ -345,7 +352,7 @@ To compare WebGL-based glTF loaders, see [gltf-test](https://github.com/cx20/glt
       * [jgltf-viewer-lwjgl](https://github.com/javagl/JglTF/tree/master/jgltf-viewer-lwjgl) - glTF viewer based on [LWJGL version 2](http://legacy.lwjgl.org/)
   * [jgltf-browser](https://github.com/javagl/JglTF/tree/master/jgltf-browser) - Application combining the above libraries
   * [jgltf-validator](https://github.com/javagl/JglTF/tree/master/jgltf-validator) - Simple glTF validator, only intended for internal use
-  
+
 | 도구 | 상태 | 설명 |
 |------|--------|-------------|
 | [JglTF-mesh](https://github.com/chadj2/jgltf-mesh) | ![status](https://img.shields.io/badge/glTF-2%2E0-green.svg?style=flat) | Generate glTF meshes and geometry in Java |
