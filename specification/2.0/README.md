@@ -118,6 +118,8 @@ Applications seeking high performance rarely load modeling formats directly; ins
 
 With the advent of mobile- and web-based 3D computing, new classes of applications have emerged that require fast, dynamic loading of standardized 3D assets. Digital marketing solutions, e-commerce product visualizations, and online model-sharing sites are just a few of the connected 3D applications being built today using WebGL or OpenGL ES. Beyond the need for efficient delivery, many of these online applications can benefit from a standard, interoperable format to enable sharing and reuse of assets between users, between applications, and within heterogeneous, distributed content pipelines.
 
+모바일과 웹에 기반한 3D 컴퓨팅 기술이 발전함에 따라, 표준화된 3차원 자산을 빠른 속도로 동적으로 로딩할 수 있는 응용에 대한 요구가 크게 증가하고 있다. 디지털 마케팅 솔루션, 전자 상거래 제품 가시화, 온라인 3D 모델 공유 사이트 등은
+
 glTF solves these problems by providing a vendor- and runtime-neutral format that can be loaded and rendered with minimal processing. The format combines an easily parseable JSON scene description with one or more binary files representing geometry, animations, and other rich data. Binary data is stored in such a way that it can be loaded directly into GPU buffers without additional parsing or other manipulation. Using this approach, glTF is able to faithfully preserve full hierarchical scenes with nodes, meshes, cameras, materials, and animations, while enabling efficient delivery and fast loading.
 
 ## glTF Basics
