@@ -126,7 +126,11 @@ glTF solves these problems by providing a vendor- and runtime-neutral format tha
 
 *This section is non-normative.*
 
+*이 절은 규격내용이 아닌 참고 정보임*
+
 glTF assets are JSON files plus supporting external data. Specifically, a glTF asset is represented by:
+
+glTF 자산은 JSON 파일에 외부 데이터를 지원한다. 엄밀히 말하면, glTF 자산은 다음과 같이 표현된다.
 
 * A JSON-formatted file (`.gltf`) containing a full scene description: node hierarchy, materials, cameras, as well as descriptor information for meshes, animations, and other constructs
 * Binary files (`.bin`) containing geometry and animation data, and other buffer-based data
