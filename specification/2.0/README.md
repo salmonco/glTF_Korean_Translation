@@ -136,9 +136,17 @@ glTF 자산은 JSON 파일에 외부 데이터를 지원한다. 엄밀히 말하
 * Binary files (`.bin`) containing geometry and animation data, and other buffer-based data
 * Image files (`.jpg`, `.png`) for textures
 
+* 전체 씬 설명이 포함된 JSON 형식 파일(`.gltf`): 노드 계층 구조, 재질, 카메라, 메쉬, 애니메이션 및 기타 구성에 대한 설명자 정보
+* 지오메트리 및 애니메이션 데이터, 기타 버퍼 기반 데이터를 포함하는 바이너리 파일(`.bin`)
+* 텍스처용 이미지 파일(`.jpg`, `.png`)
+
 Assets defined in other formats, such as images, may be stored in external files referenced via URI, stored side-by-side in GLB container, or embedded directly into the JSON using [data URIs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs).
 
+이미지와 같이 다른 형식으로 정의된 자산은 URI를 통해 참조되는 외부 파일에 저장하거나, GLB 컨테이너에 나란히 저장하거나, 혹은 [데이터 URIs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs)를 사용하여 JSON에 직접 내장할 수 있다.
+
 Valid glTF asset must specify its version.
+
+유효한 glTF 자산은 반드시 해당 버전을 지정해야 한다.
 
 <p align="center">
 <img src="figures/files.png" width="50%" />
@@ -148,7 +156,11 @@ Valid glTF asset must specify its version.
 
 *This section is non-normative.*
 
+*이 절은 규격내용이 아닌 참고 정보임*
+
 glTF has been designed to meet the following goals:
+
+glTF는 다음 목표를 충족하도록 설계되었다.
 
 * *Compact file sizes.* While web developers like to work with clear text as much as possible, clear text encoding is simply not practical for transmitting 3D data due to sheer size. The glTF JSON file itself is clear text, but it is compact and rapid to parse. All large data such as geometry and animations are stored in binary files that are much smaller than equivalent text representations.
 * *Fast loading.* glTF data structures have been designed to mirror the GPU API data as closely as possible, both in the JSON and binary files, to reduce load times. For example, binary data for meshes could be viewed as JavaScript Typed Arrays and be loaded directly into GPU buffers with a simple data copy; no parsing or further processing is required.
@@ -156,14 +168,29 @@ glTF has been designed to meet the following goals:
 * *Complete 3D scene representation.* Exporting single objects from a modeling package is not sufficient for many applications. Often, authors want to load entire scenes, including nodes, transformations, transform hierarchy, meshes, materials, cameras, and animations into their applications. glTF strives to preserve all of this information for use in the downstream application.
 * *Extensibility.* While the initial base specification supports a rich feature set, there will be many opportunities for growth and improvement. glTF defines a mechanism that allows the addition of both general-purpose and vendor-specific extensions.
 
+* *컴팩트한 파일 크기.* 웹 개발자는 가능한 한 일반 텍스트로 작업하는 것을 좋아하지만, 일반 텍스트 인코딩은 순전히 크기 때문에 3D 데이터를 전송하는 데 실용적이지 않다. glTF JSON 파일 자체는 일반 텍스트이지만 크기가 작고 구문 분석이 빠르다. 지오메트리 및 애니메이션과 같은 모든 대용량 데이터는 동등한 텍스트 표현보다 훨씬 작은 이진 파일에 저장된다.
+* *빠른 로딩.* glTF 데이터 구조는 로딩 시간을 줄이기 위해 JSON 및 바이너리 파일 모두에서 GPU API 데이터를 최대한 가깝게 미러링하도록 설계되었다. 예를 들어, 메쉬의 이진 데이터는 JavaScript 타입 배열로 볼 수 있으며 간단한 데이터 복사를 통해 GPU 버퍼에 직접 로드할 수 있다. 이는 구문 분석이나 추가 처리가 필요하지 않다.
+* *런타임 독립성.* glTF는 대상 애플리케이션이나 3D 엔진에 대해 가정하지 않는다. glTF는 렌더링 및 애니메이션 이외의 런타임 동작을 지정하지 않는다.
+* *완벽한 3D 씬 표현.* 모델링 패키지에서 단일 객체를 내보내는 것은 많은 응용 프로그램에 충분하지 않다. 종종 작성자는 노드, 변환, 변환 계층 구조, 메쉬, 재질, 카메라 및 애니메이션을 포함한 전체 씬을 애플리케이션에 로드하려고 한다. glTF는 다운스트림 애플리케이션에서 사용하기 위해 이 모든 정보를 보존하기 위해 노력한다.
+* *확장성.* 초기 기본 사양은 풍부한 기능 세트를 지원하지만 성장 및 개선의 기회가 많이 있을 것이다. glTF는 범용 및 공급업체별 확장을 모두 추가할 수 있는 메커니즘을 정의한다.
+
 The design of glTF takes a pragmatic approach. The format is meant to mirror the GPU APIs as closely as possible, but if it did only that, there would be no cameras, animations, or other features typically found in both modeling tools and runtime systems, and much semantic information would be lost in the translation. By supporting these common constructs, glTF content can not only load and render, but it can be immediately usable in a wider range of applications and require less duplication of effort in the content pipeline.
 
+glTF의 설계는 실용적인 접근 방식을 취한다. 이 형식은 GPU API를 최대한 가깝게 미러링하기 위한 것이지만, 그렇게만 하면 모델링 도구와 런타임 시스템 모두에서 일반적으로 발견되는 카메라와 애니메이션 혹은 기타 기능이 없을 것이며, 많은 의미론적 정보가 번역에서 손실된다. 이러한 공통 구성을 지원함으로써 glTF 콘텐츠는 로드 및 렌더링할 수 있을 뿐만 아니라 더 넓은 범위의 애플리케이션에서 즉시 사용할 수 있으며, 콘텐츠 파이프라인에서 중복 작업이 덜 필요하다.
+
 The following are outside the scope of the initial design of glTF:
+
+다음은 glTF의 초기 설계 범위를 벗어난다.
 
 * *glTF is not a streaming format.* The binary data in glTF is inherently streamable, and the buffer design allows for fetching data incrementally. But there are no other streaming constructs in the format, and no conformance requirements for an implementation to stream data versus downloading it in its entirety before rendering.
 * *glTF is not intended to be human-readable,* though by virtue of being represented in JSON, it is developer-friendly.
 
+* *glTF는 스트리밍 형식이 아니다.* glTF의 이진 데이터는 본질적으로 스트리밍 가능하며 버퍼 설계를 통해 데이터를 점진적으로 가져올 수 있다. 그러나 이 형식에는 다른 스트리밍 구성이 없으며, 렌더링 전에 전체 데이터를 다운로드하는 것과 비교하여 스트리밍 데이터 구현에 대한 적합성 요구 사항이 없다.
+* *glTF는 사람이 읽을 수 있도록 의도된 것이 아니지만,* JSON으로 표시되기 때문에 개발자에게 친숙하다.
+
 While version 2.0 of glTF does not define compression for geometry and other rich data, the [KHR_draco_mesh_compression extension](https://github.com/KhronosGroup/glTF/blob/master/extensions/2.0/Khronos/KHR_draco_mesh_compression/README.md) provides that option. Future extensions may include compression methods for textures and animation data.
+
+glTF 버전 2.0은 지오메트리 및 기타 풍부한 데이터에 대한 압축을 정의하지 않지만, [KHR_draco_mesh_compression 익스텐션](https://github.com/KhronosGroup/glTF/blob/master/extensions/2.0/Khronos/KHR_draco_mesh_compression/README.md)은 해당 옵션을 제공한다. 향후 익스텐션에는 텍스처 및 애니메이션 데이터에 대한 압축 방법이 포함될 수 있다.
 
 ## Versioning
 
