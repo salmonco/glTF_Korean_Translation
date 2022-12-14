@@ -169,7 +169,7 @@ glTF는 다음 목표를 충족하도록 설계되었다.
 * *Extensibility.* While the initial base specification supports a rich feature set, there will be many opportunities for growth and improvement. glTF defines a mechanism that allows the addition of both general-purpose and vendor-specific extensions.
 
 * *컴팩트한 파일 크기.* 웹 개발자는 가능한 한 일반 텍스트로 작업하는 것을 좋아하지만, 일반 텍스트 인코딩은 순전히 크기 때문에 3D 데이터를 전송하는 데 실용적이지 않다. glTF JSON 파일 자체는 일반 텍스트이지만 크기가 작고 구문 분석이 빠르다. 지오메트리 및 애니메이션과 같은 모든 대용량 데이터는 동등한 텍스트 표현보다 훨씬 작은 이진 파일에 저장된다.
-* *빠른 로딩.* glTF 데이터 구조는 로딩 시간을 줄이기 위해 JSON 및 바이너리 파일 모두에서 GPU API 데이터를 최대한 가깝게 미러링하도록 설계되었다. 예를 들어, 메쉬의 이진 데이터는 JavaScript 타입 배열로 볼 수 있으며 간단한 데이터 복사를 통해 GPU 버퍼에 직접 로드할 수 있다. 이는 구문 분석이나 추가 처리가 필요하지 않다.
+* *빠른 로딩.* glTF 데이터 구조는 로딩 시간을 줄이기 위해 JSON 및 바이너리 파일 모두에서 GPU API 데이터를 최대한 가깝게 미러링하도록 설계되었다. 예를 들어, 메쉬의 이진 데이터는 JavaScript 형식 배열로 볼 수 있으며 간단한 데이터 복사를 통해 GPU 버퍼에 직접 로드할 수 있다. 이는 구문 분석이나 추가 처리가 필요하지 않다.
 * *런타임 독립성.* glTF는 대상 애플리케이션이나 3D 엔진에 대해 가정하지 않는다. glTF는 렌더링 및 애니메이션 이외의 런타임 동작을 지정하지 않는다.
 * *완벽한 3D 씬 표현.* 모델링 패키지에서 단일 객체를 내보내는 것은 많은 응용 프로그램에 충분하지 않다. 종종 작성자는 노드, 변환, 변환 계층 구조, 메쉬, 재질, 카메라 및 애니메이션을 포함한 전체 씬을 애플리케이션에 로드하려고 한다. glTF는 다운스트림 애플리케이션에서 사용하기 위해 이 모든 정보를 보존하기 위해 노력한다.
 * *확장성.* 초기 기본 사양은 풍부한 기능 세트를 지원하지만 성장 및 개선의 기회가 많이 있을 것이다. glTF는 범용 및 공급업체별 확장을 모두 추가할 수 있는 메커니즘을 정의한다.
@@ -196,19 +196,35 @@ glTF 버전 2.0은 지오메트리 및 기타 풍부한 데이터에 대한 압�
 
 Any updates made to glTF in a minor version will be backwards and forwards compatible. Backwards compatibility will ensure that any client implementation that supports loading a glTF 2.x asset will also be able to load a glTF 2.0 asset. Forwards compatibility will allow a client implementation that only supports glTF 2.0 to load glTF 2.x assets while gracefully ignoring any new features it does not understand.
 
+마이너 버전에서 glTF에 대한 모든 업데이트는 하위 버전과 상위 버전이 호환된다. 하위 호환성은 glTF 2.x 자산 로드를 지원하는 모든 클라이언트 구현이 glTF 2.0 자산도 로드할 수 있도록 한다. 상위 호환성은 glTF 2.0만 지원하는 클라이언트 구현이 이해하지 못하는 새로운 기능을 정상적으로 무시하면서 glTF 2.x 자산을 로드할 수 있도록 한다.
+
 A minor version update can introduce new features but will not change any previously existing behavior. Existing functionality can be deprecated in a minor version update, but it will not be removed. 
+
+마이너 버전 업데이트는 새로운 기능을 도입할 수 있지만 기존 동작을 변경하지는 않는다. 기존 기능은 마이너 버전 업데이트에서 더 이상 사용되지 않을 수 있지만 제거되지는 않는다.
 
 Major version updates are not expected to be compatible with previous versions.
 
+주요 버전 업데이트는 이전 버전과 호환되지 않을 것으로 예상된다.
+
 ## File Extensions and MIME Types
+
+## 파일 확장자 및 MIME 형식
 
 * `*.gltf` files use `model/gltf+json`
 * `*.bin` files use `application/octet-stream`
 * Texture files use the official `image/*` type based on the specific image format. For compatibility with modern web browsers, the following image formats are supported: `image/jpeg`, `image/png`.
 
+* `*.gltf` 파일은 `model/gltf+json`을 사용한다.
+* `*.bin` 파일은 `application/octet-stream`을 사용한다.
+* 텍스처 파일은 특정 이미지 형식에 따라 공식 `image/*` 형식을 사용한다. 최신 웹 브라우저와의 호환성을 위해 `image/jpeg`, `image/png` 이미지 형식이 지원된다.
+
 ## JSON Encoding
 
+## JSON 인코딩
+
 To simplify client-side implementation, glTF has additional restrictions on JSON format and encoding.
+
+클라이언트 측 구현을 단순화하기 위해, glTF에는 JSON 형식 및 인코딩에 대한 추가 제한 사항이 있다.
 
 1. JSON must use UTF-8 encoding without BOM.
    > **Implementation Note:** glTF exporters must not add a byte order mark to the beginning of JSON text. In the interests of interoperability, client implementations may ignore the presence of a byte order mark rather than treating it as an error. See [RFC8259, section 8](https://tools.ietf.org/html/rfc8259#section-8) for more information.
@@ -218,9 +234,19 @@ To simplify client-side implementation, glTF has additional restrictions on JSON
    > **Implementation Note:** This allows generic glTF client implementations to not have full Unicode support. Application-specific strings (e.g., values of `"name"` properties or content of `extras` fields) may use any symbols.
 3. Names (keys) within JSON objects must be unique, i.e., duplicate keys aren't allowed.
 
+1. JSON은 BOM 없이 UTF-8 인코딩을 사용해야 한다.
+   > **구현 참고 사항:** glTF 내보내기는 JSON 텍스트의 시작 부분에 바이트 순서 표시를 추가하면 안 된다. 상호 운용성을 위해 클라이언트 구현은 바이트 순서 표시의 존재를 오류로 처리하지 않고 무시할 수 있다. 자세한 내용은 [RFC8259, 섹션 8](https://tools.ietf.org/html/rfc8259#section-8)을 참조하자.
+
+2. 이 사양에 정의된 모든 문자열(속성 이름, 열거형)은 ASCII 문자 집합만 사용하고 일반 텍스트로 작성해야 한다(예: `"\u0062\u0075\u0066\u0066\u0065\u0072"` 대신 `"buffer"`).
+
+   > **구현 참고 사항:** 이를 통해 일반 glTF 클라이언트 구현이 완전한 유니코드 지원을 갖지 않도록 할 수 있다. 애플리케이션별 문자열(예: `"name"` 속성의 값 또는 `extras` 필드의 내용)은 모든 기호를 사용할 수 있다.
+3. JSON 객체 내의 이름(키)은 고유해야 한다. 즉, 중복 키는 허용되지 않는다.
+
 ## URIs
 
 glTF uses URIs to reference buffers and image resources. Clients must support at least these two URI types:
+
+glTF는 URI를 사용하여 버퍼 및 이미지 리소스를 참조한다. 클라이언트는 최소한 다음 두 가지 URI 유형을 지원해야 한다.
 
 - **Data URIs** that embed resources in the JSON. They use syntax defined by [RFC&nbsp;2397](https://tools.ietf.org/html/rfc2397).
   > **Implementation Note:** Data URIs could be [decoded with JavaScript](https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/Base64_encoding_and_decoding) or consumed directly by web browsers in HTML tags.
@@ -234,7 +260,21 @@ Applications should consider applying syntax-based normalization to URIs as defi
 
 > **Implementation Note:** While the spec does not explicitly disallow non-normalized URIs, their use may be unsupported or lead to unwanted side-effects — such as security warnings or cache misses — on some platforms.
 
+- JSON에 리소스를 포함하는 **데이터 URI**. [RFC&nbsp;2397](https://tools.ietf.org/html/rfc2397)에 정의된 구문을 사용한다.
+  > **구현 참고 사항:** 데이터 URI는 [JavaScript로 디코딩](https://developer.mozilla.org/en-US/docs/Web/API/WindowBase64/Base64_encoding_and_decoding)하거나 웹 브라우저에서 HTML 태그로 직접 사용할 수 있다.
+
+- **상대 URI 경로** — 또는 RFC&nbsp;3986, [Section 4.2](https://tools.ietf.org/html/rfc3986#section-4.2)에 정의된 `path-noscheme` — 스키마, 권한, 매개변수 없음. 예약된 문자는 RFC&nbsp;3986, [섹션 2.2](https://tools.ietf.org/html/rfc3986#section-2.2)에 따라 퍼센트 인코딩되어야 한다.
+  > **구현 참고 사항:** 클라이언트는 선택적으로 추가 URI 구성 요소를 지원할 수 있다. 예를 들어 `http://` 또는 `file://` 체계, 권한/호스트 이름, 절대 경로, 쿼리 또는 단편 매개변수가 있다. 이러한 추가 URI 구성 요소를 포함하는 자산은 이식성이 떨어질 수 있다.
+
+ > **구현 참고 사항:** 이렇게 하면 애플리케이션이 전달을 위한 최선의 접근 방식을 결정할 수 있다. 서로 다른 자산이 동일한 형상, 애니메이션 또는 텍스처를 많이 공유하는 경우 요청된 총 데이터 양을 줄이기 위해 별도의 파일이 선호될 수 있다. 별도의 파일을 사용하면 애플리케이션에서 점진적으로 데이터를 로드할 수 있으며 보이지 않는 모델 부분에 대한 데이터를 로드할 필요가 없다. 애플리케이션이 단일 파일 배포에 더 관심이 있는 경우 base64 인코딩으로 인해 전체 크기가 증가하고 프로그레시브 또는 온디맨드 로딩을 ​​지원하지 않더라도 데이터 포함이 선호될 수 있다. 또는 자산이 GLB 컨테이너를 사용하여 base64 인코딩 없이 JSON 및 이진 데이터를 하나의 파일에 저장할 수 있다. 자세한 내용은 [GLB 파일 형식 사양](#glb-file-format-specification)을 참조하자.
+
+애플리케이션은 [RFC&nbsp;3986, Section&nbsp;6.2.2.](https://tools.ietf.org/html/rfc3986#section-6.2.2), [RFC&nbsp; 3987, Section&nbsp;5.3.2.](https://tools.ietf.org/html/rfc3987#section-5.3.2) 및 내보내기/가져오기에서 적용 가능한 스키마 규칙(예: [RFC&nbsp;7230, Section&nbsp;2.7.3.]) (HTTP의 경우 https://tools.ietf.org/html/rfc7230#section-2.7.3))에 의해 정의된 대로 URI에 구문 기반 정규화를 적용하는 것을 고려해야 한다.
+
+> **구현 참고 사항:** 사양이 명시적으로 비정규화된 URI를 허용하지 않는 동안 일부 플랫폼에서는 사용이 지원되지 않거나 원치 않는 부작용(예: 보안 경고 또는 캐시 누락)이 발생할 수 있다.
+
 # Concepts
+
+# 개념
 
 <p align="center">
 <img src="figures/dictionary-objects.png" /><br/>
@@ -243,7 +283,11 @@ The top-level arrays in a glTF asset.  See the <a href="#properties-reference">P
 
 ## Asset
 
+## 자산
+
 Each glTF asset must have an `asset` property. In fact, it's the only required top-level property for JSON to be a valid glTF. The `asset` object must contain glTF version which specifies the target glTF version of the asset. Additionally, an optional `minVersion` property can be used to specify the minimum glTF version support required to load the asset. The `minVersion` property allows asset creators to specify a minimum version that a client implementation must support in order to load the asset. This is very similar to the `extensionsRequired` concept, where an asset should only be loaded if the client supports the specified extension. Additional metadata can be stored in optional properties such as `generator` or `copyright`.  For example,
+
+각 glTF 자산에는 `자산` 속성이 있어야 한다. 실제로 JSON이 유효한 glTF가 되기 위해 필요한 유일한 최상위 속성이다. 'asset' 객체는 자산의 대상 glTF 버전을 지정하는 glTF 버전을 포함해야 한다. 또한 선택적 `minVersion` 속성을 사용하여 자산을 로드하는 데 필요한 최소 glTF 버전 지원을 지정할 수 있다. 'minVersion' 속성을 사용하면 자산 작성자가 자산을 로드하기 위해 클라이언트 구현이 지원해야 하는 최소 버전을 지정할 수 있다. 이는 클라이언트가 지정된 확장을 지원하는 경우에만 자산을 로드해야 하는 `extensionsRequired` 개념과 매우 유사하다. 추가 메타데이터는 `generator` 또는 `copyright`와 같은 선택적 속성에 저장할 수 있다. 예를 들어,
 
 ```json
 {
@@ -257,10 +301,16 @@ Each glTF asset must have an `asset` property. In fact, it's the only required t
 
 > **Implementation Note:** Client implementations should first check whether a `minVersion` property is specified and ensure both major and minor versions can be supported. If no `minVersion` is specified, then clients should check the `version` property and ensure the major version is supported. Clients that load [GLB format](#glb-file-format-specification) should also check for the `minVersion` and `version` properties in the JSON chunk as the version specified in the GLB header only refers to the GLB container version.
 
+> **구현 참고 사항:** 클라이언트 구현은 먼저 `minVersion` 속성이 지정되었는지 여부를 확인하고 주요 버전과 마이너 버전을 모두 지원할 수 있는지 확인해야 한다. `minVersion`이 지정되지 않은 경우 클라이언트는 `version` 속성을 확인하고 주요 버전이 지원되는지 확인해야 한다. GLB 헤더에 지정된 버전은 GLB 컨테이너 버전만 참조하므로 [GLB 형식](#glb-file-format-specification)을 로드하는 클라이언트는 JSON 청크의 `minVersion` 및 `version` 속성도 확인해야 한다.
+
 
 ## Indices and Names
 
+## 인덱스와 이름
+
 Entities of a glTF asset are referenced by their indices in corresponding arrays, e.g., a `bufferView` refers to a `buffer` by specifying the buffer's index in `buffers` array.  For example:
+
+glTF 자산의 엔티티는 해당 배열의 인덱스로 참조된다. 예를 들어 `bufferView`는 `buffers` 배열에서 버퍼의 인덱스를 지정하여 `buffer`를 참조한다. 예를 들어:
 
 ```json
 {
@@ -282,43 +332,83 @@ Entities of a glTF asset are referenced by their indices in corresponding arrays
 
 In this example, `buffers` and `bufferViews` have only one element each. The bufferView refers to the buffer using the buffer's index: `"buffer": 0`.
 
+이 예에서 `buffers` 및 `bufferViews`에는 각각 하나의 요소만 있다. bufferView는 버퍼의 색인 `"buffer": 0`을 사용하여 버퍼를 참조한다.
+
 Whereas indices are used for internal glTF references, _names_ are used for application-specific uses such as display. Any top-level glTF object can have a `name` string property for this purpose. These property values are not guaranteed to be unique as they are intended to contain values created when the asset was authored.
+
+인덱스가 내부 glTF 참조에 사용되는 반면 _names_는 디스플레이와 같은 애플리케이션별 용도에 사용된다. 모든 최상위 glTF 개체는 이 목적을 위해 `name` 문자열 속성을 가질 수 있다. 이러한 속성 값은 자산이 작성될 때 생성된 값을 포함하기 위한 것이므로 고유하다고 보장되지 않는다.
 
 For property names, glTF uses [camel case](http://en.wikipedia.org/wiki/CamelCase) `likeThis`. Camel case is a common naming convention in JSON and WebGL.
 
+속성 이름의 경우 glTF는 [카멜 케이스](http://en.wikipedia.org/wiki/CamelCase) `likeThis`를 사용한다. Camel case는 JSON 및 WebGL의 일반적인 명명 규칙이다.
+
 ## Coordinate System and Units
 
+## 좌표계와 단위
+
 glTF uses a right-handed coordinate system, that is, the cross product of +X and +Y yields +Z. glTF defines +Y as up. The front of a glTF asset faces +Z.
+
+glTF는 오른손 좌표계를 사용한다. 즉, +X와 +Y의 외적은 +Z를 생성한다. glTF는 +Y를 위쪽으로 정의한다. glTF 자산의 앞면은 +Z를 향한다.
 
 ![](figures/coordinate-system.png)
 
 The units for all linear distances are meters.
 
+모든 선형 거리의 단위는 미터다.
+
 All angles are in radians.
+
+모든 각도는 라디안 단위다.
 
 Positive rotation is counterclockwise.
 
+양의 회전은 시계 반대 방향이다.
+
 The [node transformations](#transformations) and [animation channel paths](#animations) are 3D vectors or quaternions with the following data types and semantics:
+
+[노드 변환](#transformations) 및 [애니메이션 채널 경로](#animations)는 다음과 같은 데이터 유형 및 의미 체계를 가진 3D 벡터 또는 쿼터니언이다.
 
 * translation: A 3D vector containing the translation along the x, y and z axes
 * rotation: A quaternion (x, y, z, w), where w is the scalar
 * scale: A 3D vector containing the scaling factors along the x, y and z axes
 
+* 이동: x, y 및 z 축을 따라 이동을 포함하는 3D 벡터
+* 회전: 쿼터니언(x, y, z, w), 여기서 w는 스칼라
+* 스케일: x, y, z 축을 따라 스케일링 계수를 포함하는 3D 벡터
+
 RGB color values use sRGB color primaries.
+
+RGB 색상 값은 sRGB 원색을 사용한다.
 
 > **Implementation Note:** Color primaries define the interpretation of each color channel of the color model, particularly with respect to the RGB color model. In the context of a typical display, color primaries describe the color of the red, green and blue phosphors or filters. The same primaries are also defined in Recommendation ITU-R BT.709. Since the overwhelming majority of currently used consumer displays are using the same primaries as default, client implementations usually do not need to convert color values. Future specification versions or extensions may allow other color primaries (such as P3) or even provide a way of embedding custom color profiles.
 
+> **구현 참고:** 기본 색상은 특히 RGB 색상 모델과 관련하여 색상 모델의 각 색상 채널에 대한 해석을 정의한다. 일반적인 디스플레이의 맥락에서 원색은 빨강, 녹색 및 파랑 인광체 또는 필터의 색상을 나타낸다. 동일한 원색이 ITU-R 권고 BT.709에도 정의되어 있다. 현재 사용되는 소비자 디스플레이의 압도적 다수가 기본값과 동일한 원색을 사용하고 있기 때문에 클라이언트 구현은 일반적으로 색상 값을 변환할 필요가 없다. 향후 사양 버전 또는 확장에서는 다른 원색(예: P3)을 허용하거나 사용자 지정 색상 프로필을 포함하는 방법을 제공할 수도 있다.
+
+
 ## Scenes
+
+## 씬
 
 The glTF asset contains zero or more *scenes*, the set of visual objects to render. Scenes are defined in a `scenes` array. An additional property, `scene` (note singular), identifies which of the scenes in the array is to be displayed at load time.
 
+glTF 자산에는 렌더링할 시각적 개체 집합인 0개 이상의 *씬*이 포함되어 있다. 씬은 `scenes` 배열에 정의된다. 추가 속성인 '씬'(단수 참고)은 로드 시 표시될 배열의 씬을 식별한다.
+
 All nodes listed in `scene.nodes` array must be root nodes (see the next section for details).
 
+`scene.nodes` 배열에 나열된 모든 노드는 루트 노드여야 한다(자세한 내용은 다음 섹션 참조).
+
 When `scene` is undefined, runtime is not required to render anything at load time.
+
+
+`씬`이 정의되지 않은 경우 로드 시간에 렌더링하는 데 런타임이 필요하지 않다.
 
 > **Implementation Note:** This allows applications to use glTF assets as libraries of individual entities such as materials or meshes.   
 
 The following example defines a glTF asset with a single scene, that contains a single node.
+
+> **구현 참고 사항:** 이를 통해 애플리케이션은 glTF 자산을 재료 또는 메쉬와 같은 개별 엔터티의 라이브러리로 사용할 수 있다.
+
+다음 예제는 단일 노드를 포함하는 단일 씬이 있는 glTF 자산을 정의한다.
 
 ```json
 {
