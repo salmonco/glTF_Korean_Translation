@@ -947,7 +947,11 @@ Alignment requirements apply only to start of each column, so trailing bytes cou
 
 > **Implementation Note:** For JavaScript, this allows a runtime to efficiently create a single ArrayBuffer from a glTF `buffer` or an ArrayBuffer per `bufferView`, and then use an `accessor` to turn a typed array view (e.g., `Float32Array`) into an ArrayBuffer without copying it because the byte offset of the typed array view is a multiple of the size of the type (e.g., `4` for `Float32Array`).
 
+> **구현 참고 사항:** JavaScript의 경우, 런타임이 glTF `buffer` 또는 `bufferView`당 ArrayBuffer에서 단일 ArrayBuffer를 효율적으로 생성할 수 있다. 그런 다음 `accessor`를 사용하여 유형이 지정된 배열 보기(예: `Float32Array`)를 복사하지 않고 ArrayBuffer로 전환한다. 유형이 지정된 배열 보기의 바이트 오프셋은 유형 크기의 배수(예: `Float32Array`의 경우 `4`)이기 때문이다.
+
 Consider the following example:
+
+다음 예를 고려하자.
 
 ```json
 {
@@ -972,6 +976,8 @@ Consider the following example:
 ```
 Accessing binary data defined by example above could be done like this:
 
+위의 예에서 정의한 이진 데이터에 액세스하는 것은 다음과 같이 수행할 수 있다.
+
 ```js
 const accessorTypeToNumComponentsMap = {
 		'SCALAR': 1,
@@ -987,20 +993,36 @@ var typedView = new Uint16Array(buffer, accessor.byteOffset + accessor.bufferVie
 
 The size of the accessor component type is two bytes (the `componentType` is unsigned short). The accessor's `byteOffset` is also divisible by two. Likewise, the accessor's offset into buffer `0` is `5228 ` (`620 + 4608`), which is divisible by two.
 
+접근자 구성 요소 유형의 크기는 2바이트다(`componentType`은 unsigned short다.). 접근자의 `byteOffset`도 2로 나눌 수 있다. 마찬가지로 버퍼 `0`에 대한 접근자의 오프셋은 `5228`(`620 + 4608`)이며 2로 나눌 수 있다.
+
 
 ## Geometry
 
+## 지오메트리
+
 Any node can contain one mesh, defined in its `mesh` property. Mesh can be skinned using a information provided in referenced `skin` object. Mesh can have morph targets.
+
+모든 노드는 `mesh` 속성에 정의된 하나의 메쉬를 포함할 수 있다. 메쉬는 참조된 `skin` 객체에 제공된 정보를 사용하여 스키닝할 수 있다. 메쉬는 모프 타겟을 가질 수 있다.
 
 ### Meshes
 
+### 메쉬
+
 In glTF, meshes are defined as arrays of *primitives*. Primitives correspond to the data required for GPU draw calls. Primitives specify one or more `attributes`, corresponding to the vertex attributes used in the draw calls. Indexed primitives also define an `indices` property. Attributes and indices are defined as references to accessors containing corresponding data. Each primitive also specifies a material and a primitive type that corresponds to the GPU primitive type (e.g., triangle set).
+
+glTF에서 메쉬는 *원시체*의 배열로 정의된다. 프리미티브는 GPU 그리기 호출에 필요한 데이터에 해당한다. 프리미티브는 그리기 호출에 사용되는 정점 속성에 해당하는 하나 이상의 `attributes`를 지정한다. 인덱싱된 프리미티브는 `indices` 속성도 정의한다. 특성 및 인덱스는 해당 데이터를 포함하는 접근자에 대한 참조로 정의된다. 각 프리미티브는 또한 GPU 프리미티브 유형(예: 삼각형 집합)에 해당하는 재료 및 프리미티브 유형을 지정한다.
 
 > **Implementation note:** Splitting one mesh into *primitives* could be useful to limit number of indices per draw call.
 
+> **구현 참고 사항:** 하나의 메쉬를 *원시체*로 분할하면 그리기 호출당 인덱스 수를 제한하는 데 유용할 수 있다.
+
 If `material` is not specified, then a [default material](#default-material) is used.
 
+`material`이 지정되지 않은 경우 [기본 재료](#default-material)가 사용된다.
+
 The following example defines a mesh containing one triangle set primitive:
+
+다음 예제는 하나의 삼각형 집합 프리미티브를 포함하는 메쉬를 정의한다.
 
 ```json
 {
@@ -1026,9 +1048,15 @@ The following example defines a mesh containing one triangle set primitive:
 
 Each attribute is defined as a property of the `attributes` object. The name of the property corresponds to an enumerated value identifying the vertex attribute, such as `POSITION`. The value of the property is the index of an accessor that contains the data.
 
+각 속성은 `attributes` 객체의 속성으로 정의된다. 속성의 이름은 `POSITION`과 같이 정점 속성을 식별하는 열거된 값에 해당한다. 속성 값은 데이터를 포함하는 접근자의 인덱스다.
+
 Valid attribute semantic property names include `POSITION`, `NORMAL`, `TANGENT`, `TEXCOORD_0`, `TEXCOORD_1`, `COLOR_0`, `JOINTS_0`, and `WEIGHTS_0`.  Application-specific semantics must start with an underscore, e.g., `_TEMPERATURE`.
 
+유효한 속성 시맨틱 속성 이름에는 `POSITION`, `NORMAL`, `TANGENT`, `TEXCOORD_0`, `TEXCOORD_1`, `COLOR_0`, `JOINTS_0` 및 `WEIGHTS_0`이 포함된다. 애플리케이션별 시맨틱은 밑줄로 시작해야 한다(예: `_TEMPERATURE`).
+
 Valid accessor type and component type for each attribute semantic property are defined below.
+
+각 속성 시맨틱 속성에 대한 유효한 접근자 유형 및 구성 요소 유형은 아래에 정의되어 있다.
 
 |Name|Accessor Type(s)|Component Type(s)|Description|
 |----|----------------|-----------------|-----------|
@@ -1043,21 +1071,39 @@ Valid accessor type and component type for each attribute semantic property are 
 
 `POSITION` accessor **must** have `min` and `max` properties defined.
 
+`POSITION` 접근자는 **반드시** `min` 및 `max` 속성이 정의되어 있어야 한다.
+
 `TEXCOORD`, `COLOR`, `JOINTS`, and `WEIGHTS` attribute semantic property names must be of the form `[semantic]_[set_index]`, e.g., `TEXCOORD_0`, `TEXCOORD_1`, `COLOR_0`. Client implementations must support at least two UV texture coordinate sets, one vertex color, and one joints/weights set. Extensions can add additional property names, accessor types, and/or accessor component types.
+
+`TEXCOORD`, `COLOR`, `JOINTS` 및 `WEIGHTS` 속성 시맨틱 속성 이름은 `[semantic]_[set_index]` 형식이어야 한다(예: `TEXCOORD_0`, `TEXCOORD_1`, `COLOR_0`). 클라이언트 구현은 최소 두 개의 UV 텍스처 좌표 세트, 하나의 정점 색상 및 하나의 관절/가중치 집합을 지원해야 한다. 확장은 추가 속성 이름, 접근자 유형 및/또는 접근자 구성 요소 유형을 추가할 수 있다.
 
 All indices for indexed attribute semantics must start with 0 and be continuous positive integers: `TEXCOORD_0`, `TEXCOORD_1`, etc. Indices must not use leading zeroes to pad the number of digits, and clients are not required to support more indexed semantics than described above.
 
+인덱싱된 속성 시맨틱에 대한 모든 인덱스는 0으로 시작해야 하며, `TEXCOORD_0`, `TEXCOORD_1` 등과 같이 연속적인 양의 정수여야 한다. 인덱스는 자릿수를 채우기 위해 선행 0을 사용해서는 안 되며, 클라이언트는 앞서 묘사된 것보다 더 많은 인덱싱된 시맨틱을 지원할 필요가 없다.
+
 > **Implementation note:** Each primitive corresponds to one WebGL draw call (engines are, of course, free to batch draw calls). When a primitive's `indices` property is defined, it references the accessor to use for index data, and GL's `drawElements` function should be used. When the `indices` property is not defined, GL's `drawArrays` function should be used with a count equal to the count property of any of the accessors referenced by the `attributes` property (they are all equal for a given primitive).
+
+> **구현 참고 사항:** 각 프리미티브는 하나의 WebGL 드로우 콜에 해당한다(물론 엔진은 일괄 드로우 콜에 무료다). 프리미티브의 `indices` 속성이 정의되면 인덱스 데이터에 사용할 접근자를 참조하며 GL의 `drawElements` 함수를 사용해야 한다. `indices` 속성이 정의되지 않은 경우 GL의 `drawArrays` 함수는 `attributes` 속성이 참조하는 모든 접근자의 count 속성과 동일한 count와 함께 사용해야 한다(주어진 프리미티브에 대해 모두 동일하다.).
 
 > **Implementation note:** When positions are not specified, client implementations should skip primitive's rendering unless its positions are provided by other means (e.g., by extension). This applies to both indexed and non-indexed geometry.
 
+> **구현 참고 사항:** 위치가 지정되지 않은 경우 클라이언트 구현은 다른 방법(예: 확장)에 의해 위치가 제공되지 않는 한 프리미티브의 렌더링을 건너뛰어야 한다. 이는 인덱스 및 비인덱스 지오메트리 모두에 적용된다.
+
 > **Implementation note:** When normals are not specified, client implementations should calculate flat normals.
+
+> **구현 참고 사항:** 법선이 지정되지 않은 경우 클라이언트 구현에서 평평한 법선을 계산해야 한다.
 
 > **Implementation note:** When tangents are not specified, client implementations should calculate tangents using default MikkTSpace algorithms.  For best results, the mesh triangles should also be processed using default MikkTSpace algorithms.
 
+> **구현 참고 사항:** 탄젠트가 지정되지 않은 경우 클라이언트 구현은 기본 MikkTSpace 알고리즘을 사용하여 탄젠트를 계산해야 한다. 최상의 결과를 얻으려면 메쉬 삼각형도 기본 MikkTSpace 알고리즘을 사용하여 처리해야 한다.
+
 > **Implementation note:** Vertices of the same triangle should have the same `tangent.w` value. When vertices of the same triangle have different `tangent.w` values, tangent space is considered undefined.
 
+> **구현 참고 사항:** 동일한 삼각형의 정점은 동일한 `tangent.w` 값을 가져야 한다. 같은 삼각형의 정점이 서로 다른 `tangent.w` 값을 가질 때 접선 공간은 정의되지 않은 것으로 간주된다.
+
 > **Implementation note:** When normals and tangents are specified, client implementations should compute the bitangent by taking the cross product of the normal and tangent xyz vectors and multiplying against the w component of the tangent: `bitangent = cross(normal, tangent.xyz) * tangent.w`
+
+> **구현 참고 사항:** 법선과 탄젠트가 지정된 경우 클라이언트 구현은 법선과 탄젠트 xyz 벡터의 외적을 취하여 탄젠트의 w 구성 요소를 곱하여 바이탄젠트를 계산해야 한다. `bitangent = cross(normal, tangent.xyz) * tangent.w`
 
 #### Morph Targets
 
