@@ -122,7 +122,7 @@ With the advent of mobile- and web-based 3D computing, new classes of applicatio
 
 glTF solves these problems by providing a vendor- and runtime-neutral format that can be loaded and rendered with minimal processing. The format combines an easily parseable JSON scene description with one or more binary files representing geometry, animations, and other rich data. Binary data is stored in such a way that it can be loaded directly into GPU buffers without additional parsing or other manipulation. Using this approach, glTF is able to faithfully preserve full hierarchical scenes with nodes, meshes, cameras, materials, and animations, while enabling efficient delivery and fast loading.
 
-## glTF Basics
+## glTF Basics - glTF 기초
 
 *This section is non-normative.*
 
@@ -130,14 +130,14 @@ glTF solves these problems by providing a vendor- and runtime-neutral format tha
 
 glTF assets are JSON files plus supporting external data. Specifically, a glTF asset is represented by:
 
-glTF 자산은 JSON 파일에 외부 데이터를 지원한다. 엄밀히 말하면, glTF 자산은 다음과 같이 표현된다.
+glTF 자산은 JSON 파일에 외부 데이터를 지원한다. 엄밀히 말하면 glTF 자산은 다음과 같이 표현된다.
 
 * A JSON-formatted file (`.gltf`) containing a full scene description: node hierarchy, materials, cameras, as well as descriptor information for meshes, animations, and other constructs
 * Binary files (`.bin`) containing geometry and animation data, and other buffer-based data
 * Image files (`.jpg`, `.png`) for textures
 
-* 전체 씬 설명이 포함된 JSON 형식 파일(`.gltf`): 노드 계층 구조, 재질, 카메라, 메쉬, 애니메이션 및 기타 구성에 대한 설명자 정보
-* 지오메트리 및 애니메이션 데이터, 기타 버퍼 기반 데이터를 포함하는 바이너리 파일(`.bin`)
+* 전체 장면 설명이 포함된 JSON 형식 파일(`.gltf`): 노드 계층 구조, 재질, 카메라, 메쉬, 애니메이션 및 기타 구성에 대한 설명자 정보
+* 기하 형상 및 애니메이션 데이터, 기타 버퍼 기반 데이터를 포함하는 바이너리 파일(`.bin`)
 * 텍스처용 이미지 파일(`.jpg`, `.png`)
 
 Assets defined in other formats, such as images, may be stored in external files referenced via URI, stored side-by-side in GLB container, or embedded directly into the JSON using [data URIs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs).
@@ -152,7 +152,7 @@ Valid glTF asset must specify its version.
 <img src="figures/files.png" width="50%" />
 </p>
 
-## Design Goals
+## Design Goals - 디자인 목표
 
 *This section is non-normative.*
 
@@ -168,10 +168,10 @@ glTF는 다음 목표를 충족하도록 설계되었다.
 * *Complete 3D scene representation.* Exporting single objects from a modeling package is not sufficient for many applications. Often, authors want to load entire scenes, including nodes, transformations, transform hierarchy, meshes, materials, cameras, and animations into their applications. glTF strives to preserve all of this information for use in the downstream application.
 * *Extensibility.* While the initial base specification supports a rich feature set, there will be many opportunities for growth and improvement. glTF defines a mechanism that allows the addition of both general-purpose and vendor-specific extensions.
 
-* *컴팩트한 파일 크기.* 웹 개발자는 가능한 한 일반 텍스트로 작업하는 것을 좋아하지만, 일반 텍스트 인코딩은 순전히 크기 때문에 3D 데이터를 전송하는 데 실용적이지 않다. glTF JSON 파일 자체는 일반 텍스트이지만 크기가 작고 구문 분석이 빠르다. 지오메트리 및 애니메이션과 같은 모든 대용량 데이터는 동등한 텍스트 표현보다 훨씬 작은 이진 파일에 저장된다.
+* *컴팩트한 파일 크기.* 웹 개발자는 가능한 한 일반 텍스트로 작업하는 것을 좋아하지만, 일반 텍스트 인코딩은 순전히 크기 때문에 3D 데이터를 전송하는 데 실용적이지 않다. glTF JSON 파일 자체는 일반 텍스트이지만 크기가 작고 구문 분석이 빠르다. 기하 형상 및 애니메이션과 같은 모든 대용량 데이터는 동등한 텍스트 표현보다 훨씬 작은 이진 파일에 저장된다.
 * *빠른 로딩.* glTF 데이터 구조는 로딩 시간을 줄이기 위해 JSON 및 바이너리 파일 모두에서 GPU API 데이터를 최대한 가깝게 미러링하도록 설계되었다. 예를 들어, 메쉬의 이진 데이터는 JavaScript 형식 배열로 볼 수 있으며 간단한 데이터 복사를 통해 GPU 버퍼에 직접 로드할 수 있다. 이는 구문 분석이나 추가 처리가 필요하지 않다.
 * *런타임 독립성.* glTF는 대상 애플리케이션이나 3D 엔진에 대해 가정하지 않는다. glTF는 렌더링 및 애니메이션 이외의 런타임 동작을 지정하지 않는다.
-* *완벽한 3D 씬 표현.* 모델링 패키지에서 단일 객체를 내보내는 것은 많은 응용 프로그램에 충분하지 않다. 종종 작성자는 노드, 변환, 변환 계층 구조, 메쉬, 재질, 카메라 및 애니메이션을 포함한 전체 씬을 애플리케이션에 로드하려고 한다. glTF는 다운스트림 애플리케이션에서 사용하기 위해 이 모든 정보를 보존하기 위해 노력한다.
+* *완벽한 3D 장면 표현.* 모델링 패키지에서 단일 객체를 내보내는 것은 많은 응용 프로그램에 충분하지 않다. 종종 작성자는 노드, 변환, 변환 계층 구조, 메쉬, 재질, 카메라 및 애니메이션을 포함한 전체 장면을 애플리케이션에 로드하려고 한다. glTF는 다운스트림 애플리케이션에서 사용하기 위해 이 모든 정보를 보존하기 위해 노력한다.
 * *확장성.* 초기 기본 사양은 풍부한 기능 세트를 지원하지만 성장 및 개선의 기회가 많이 있을 것이다. glTF는 범용 및 공급업체별 확장을 모두 추가할 수 있는 메커니즘을 정의한다.
 
 The design of glTF takes a pragmatic approach. The format is meant to mirror the GPU APIs as closely as possible, but if it did only that, there would be no cameras, animations, or other features typically found in both modeling tools and runtime systems, and much semantic information would be lost in the translation. By supporting these common constructs, glTF content can not only load and render, but it can be immediately usable in a wider range of applications and require less duplication of effort in the content pipeline.
@@ -190,9 +190,9 @@ The following are outside the scope of the initial design of glTF:
 
 While version 2.0 of glTF does not define compression for geometry and other rich data, the [KHR_draco_mesh_compression extension](https://github.com/KhronosGroup/glTF/blob/master/extensions/2.0/Khronos/KHR_draco_mesh_compression/README.md) provides that option. Future extensions may include compression methods for textures and animation data.
 
-glTF 버전 2.0은 지오메트리 및 기타 풍부한 데이터에 대한 압축을 정의하지 않지만, [KHR_draco_mesh_compression 익스텐션](https://github.com/KhronosGroup/glTF/blob/master/extensions/2.0/Khronos/KHR_draco_mesh_compression/README.md)은 해당 옵션을 제공한다. 향후 익스텐션에는 텍스처 및 애니메이션 데이터에 대한 압축 방법이 포함될 수 있다.
+glTF 버전 2.0은 기하 형상 및 기타 풍부한 데이터에 대한 압축을 정의하지 않지만, [KHR_draco_mesh_compression 익스텐션](https://github.com/KhronosGroup/glTF/blob/master/extensions/2.0/Khronos/KHR_draco_mesh_compression/README.md)은 해당 옵션을 제공한다. 향후 익스텐션에는 텍스처 및 애니메이션 데이터에 대한 압축 방법이 포함될 수 있다.
 
-## Versioning
+## Versioning - 버전 관리
 
 Any updates made to glTF in a minor version will be backwards and forwards compatible. Backwards compatibility will ensure that any client implementation that supports loading a glTF 2.x asset will also be able to load a glTF 2.0 asset. Forwards compatibility will allow a client implementation that only supports glTF 2.0 to load glTF 2.x assets while gracefully ignoring any new features it does not understand.
 
@@ -206,9 +206,7 @@ Major version updates are not expected to be compatible with previous versions.
 
 주요 버전 업데이트는 이전 버전과 호환되지 않을 것으로 예상된다.
 
-## File Extensions and MIME Types
-
-## 파일 확장자 및 MIME 형식
+## File Extensions and MIME Types - 파일 확장자 및 MIME 형식
 
 * `*.gltf` files use `model/gltf+json`
 * `*.bin` files use `application/octet-stream`
@@ -218,9 +216,7 @@ Major version updates are not expected to be compatible with previous versions.
 * `*.bin` 파일은 `application/octet-stream`을 사용한다.
 * 텍스처 파일은 특정 이미지 형식에 따라 공식 `image/*` 형식을 사용한다. 최신 웹 브라우저와의 호환성을 위해 `image/jpeg`, `image/png` 이미지 형식이 지원된다.
 
-## JSON Encoding
-
-## JSON 인코딩
+## JSON Encoding - JSON 인코딩
 
 To simplify client-side implementation, glTF has additional restrictions on JSON format and encoding.
 
@@ -272,22 +268,18 @@ Applications should consider applying syntax-based normalization to URIs as defi
 
 > **구현 참고 사항:** 사양이 명시적으로 비정규화된 URI를 허용하지 않는 동안 일부 플랫폼에서는 사용이 지원되지 않거나 원치 않는 부작용(예: 보안 경고 또는 캐시 누락)이 발생할 수 있다.
 
-# Concepts
-
-# 개념
+# Concepts - 개념
 
 <p align="center">
 <img src="figures/dictionary-objects.png" /><br/>
 The top-level arrays in a glTF asset.  See the <a href="#properties-reference">Properties Reference</a>.
 </p>
 
-## Asset
-
-## 자산
+## Asset - 자산
 
 Each glTF asset must have an `asset` property. In fact, it's the only required top-level property for JSON to be a valid glTF. The `asset` object must contain glTF version which specifies the target glTF version of the asset. Additionally, an optional `minVersion` property can be used to specify the minimum glTF version support required to load the asset. The `minVersion` property allows asset creators to specify a minimum version that a client implementation must support in order to load the asset. This is very similar to the `extensionsRequired` concept, where an asset should only be loaded if the client supports the specified extension. Additional metadata can be stored in optional properties such as `generator` or `copyright`.  For example,
 
-각 glTF 자산에는 `자산` 속성이 있어야 한다. 실제로 JSON이 유효한 glTF가 되기 위해 필요한 유일한 최상위 속성이다. 'asset' 객체는 자산의 대상 glTF 버전을 지정하는 glTF 버전을 포함해야 한다. 또한 선택적 `minVersion` 속성을 사용하여 자산을 로드하는 데 필요한 최소 glTF 버전 지원을 지정할 수 있다. 'minVersion' 속성을 사용하면 자산 작성자가 자산을 로드하기 위해 클라이언트 구현이 지원해야 하는 최소 버전을 지정할 수 있다. 이는 클라이언트가 지정된 확장을 지원하는 경우에만 자산을 로드해야 하는 `extensionsRequired` 개념과 매우 유사하다. 추가 메타데이터는 `generator` 또는 `copyright`와 같은 선택적 속성에 저장할 수 있다. 예를 들어,
+각 glTF 자산에는 `asset` 속성이 있어야 한다. 실제로 JSON이 유효한 glTF가 되기 위해 필요한 유일한 최상위 속성이다. `asset` 객체는 자산의 대상 glTF 버전을 지정하는 glTF 버전을 포함해야 한다. 또한 선택적 `minVersion` 속성을 사용하여 자산을 로드하는 데 필요한 최소 glTF 버전 지원을 지정할 수 있다. `minVersion` 속성을 사용하면 자산 작성자가 자산을 로드하기 위해 클라이언트 구현이 지원해야 하는 최소 버전을 지정할 수 있다. 이는 클라이언트가 지정된 확장을 지원하는 경우에만 자산을 로드해야 하는 `extensionsRequired` 개념과 매우 유사하다. 추가 메타데이터는 `generator` 또는 `copyright`와 같은 선택적 속성에 저장할 수 있다. 예를 들어,
 
 ```json
 {
@@ -304,9 +296,7 @@ Each glTF asset must have an `asset` property. In fact, it's the only required t
 > **구현 참고 사항:** 클라이언트 구현은 먼저 `minVersion` 속성이 지정되었는지 여부를 확인하고 주요 버전과 마이너 버전을 모두 지원할 수 있는지 확인해야 한다. `minVersion`이 지정되지 않은 경우 클라이언트는 `version` 속성을 확인하고 주요 버전이 지원되는지 확인해야 한다. GLB 헤더에 지정된 버전은 GLB 컨테이너 버전만 참조하므로 [GLB 형식](#glb-file-format-specification)을 로드하는 클라이언트는 JSON 청크의 `minVersion` 및 `version` 속성도 확인해야 한다.
 
 
-## Indices and Names
-
-## 인덱스와 이름
+## Indices and Names - 인덱스와 이름
 
 Entities of a glTF asset are referenced by their indices in corresponding arrays, e.g., a `bufferView` refers to a `buffer` by specifying the buffer's index in `buffers` array.  For example:
 
@@ -342,9 +332,7 @@ For property names, glTF uses [camel case](http://en.wikipedia.org/wiki/CamelCas
 
 속성 이름의 경우 glTF는 [카멜 케이스](http://en.wikipedia.org/wiki/CamelCase) `likeThis`를 사용한다. Camel case는 JSON 및 WebGL의 일반적인 명명 규칙이다.
 
-## Coordinate System and Units
-
-## 좌표계와 단위
+## Coordinate System and Units - 좌표계와 단위
 
 glTF uses a right-handed coordinate system, that is, the cross product of +X and +Y yields +Z. glTF defines +Y as up. The front of a glTF asset faces +Z.
 
@@ -382,16 +370,14 @@ RGB 색상 값은 sRGB 원색을 사용한다.
 
 > **Implementation Note:** Color primaries define the interpretation of each color channel of the color model, particularly with respect to the RGB color model. In the context of a typical display, color primaries describe the color of the red, green and blue phosphors or filters. The same primaries are also defined in Recommendation ITU-R BT.709. Since the overwhelming majority of currently used consumer displays are using the same primaries as default, client implementations usually do not need to convert color values. Future specification versions or extensions may allow other color primaries (such as P3) or even provide a way of embedding custom color profiles.
 
-> **구현 참고:** 기본 색상은 특히 RGB 색상 모델과 관련하여 색상 모델의 각 색상 채널에 대한 해석을 정의한다. 일반적인 디스플레이의 맥락에서 원색은 빨강, 녹색 및 파랑 인광체 또는 필터의 색상을 나타낸다. 동일한 원색이 ITU-R 권고 BT.709에도 정의되어 있다. 현재 사용되는 소비자 디스플레이의 압도적 다수가 기본값과 동일한 원색을 사용하고 있기 때문에 클라이언트 구현은 일반적으로 색상 값을 변환할 필요가 없다. 향후 사양 버전 또는 확장에서는 다른 원색(예: P3)을 허용하거나 사용자 지정 색상 프로필을 포함하는 방법을 제공할 수도 있다.
+> **구현 참고 사항:** 기본 색상은 특히 RGB 색상 모델과 관련하여 색상 모델의 각 색상 채널에 대한 해석을 정의한다. 일반적인 디스플레이의 맥락에서 원색은 빨강, 녹색 및 파랑 인광체 또는 필터의 색상을 나타낸다. 동일한 원색이 ITU-R 권고 BT.709에도 정의되어 있다. 현재 사용되는 소비자 디스플레이의 압도적 다수가 기본값과 동일한 원색을 사용하고 있기 때문에 클라이언트 구현은 일반적으로 색상 값을 변환할 필요가 없다. 향후 사양 버전 또는 확장에서는 다른 원색(예: P3)을 허용하거나 사용자 지정 색상 프로필을 포함하는 방법을 제공할 수도 있다.
 
 
-## Scenes
-
-## 씬
+## Scenes - 장면
 
 The glTF asset contains zero or more *scenes*, the set of visual objects to render. Scenes are defined in a `scenes` array. An additional property, `scene` (note singular), identifies which of the scenes in the array is to be displayed at load time.
 
-glTF 자산에는 렌더링할 시각적 개체 집합인 0개 이상의 *씬*이 포함되어 있다. 씬은 `scenes` 배열에 정의된다. 추가 속성인 '씬'(단수 참고)은 로드 시 표시될 배열의 씬을 식별한다.
+glTF 자산에는 렌더링할 시각적 개체 집합인 0개 이상의 *장면*이 포함되어 있다. 장면은 `scenes` 배열에 정의된다. 추가 속성인 `scene`(단수 참고)은 로드 시 표시될 배열의 장면을 식별한다.
 
 All nodes listed in `scene.nodes` array must be root nodes (see the next section for details).
 
@@ -399,7 +385,7 @@ All nodes listed in `scene.nodes` array must be root nodes (see the next section
 
 When `scene` is undefined, runtime is not required to render anything at load time.
 
-`씬`이 정의되지 않은 경우 로드 시간에 렌더링하는 데 런타임이 필요하지 않다.
+`scene`이 정의되지 않은 경우 로드 시간에 렌더링하는 데 런타임이 필요하지 않다.
 
 > **Implementation Note:** This allows applications to use glTF assets as libraries of individual entities such as materials or meshes.   
 
@@ -407,7 +393,7 @@ When `scene` is undefined, runtime is not required to render anything at load ti
 
 The following example defines a glTF asset with a single scene, that contains a single node.
 
-다음 예제는 단일 노드를 포함하는 단일 씬이 있는 glTF 자산을 정의한다.
+다음 예제는 단일 노드를 포함하는 단일 장면이 있는 glTF 자산을 정의한다.
 
 ```json
 {
@@ -428,9 +414,7 @@ The following example defines a glTF asset with a single scene, that contains a 
 }
 ```
 
-### Nodes and Hierarchy
-
-### 노드 및 계층
+### Nodes and Hierarchy - 노드 및 계층
 
 The glTF asset can define *nodes*, that is, the objects comprising the scene to render.
 
@@ -477,15 +461,13 @@ The node hierarchy is defined using a node's `children` property, as in the foll
 
 The node named `Car` has four children. Each of those nodes could in turn have its own children, creating a hierarchy of nodes.
 
-'Car'라는 노드에는 4개의 자식이 있다. 이러한 각 노드는 자체 자식을 가질 수 있으며 노드의 계층 구조를 생성한다.
+`Car`라는 노드에는 4개의 자식이 있다. 이러한 각 노드는 자체 자식을 가질 수 있으며 노드의 계층 구조를 생성한다.
 
 > For Version 2.0 conformance, the glTF node hierarchy is not a directed acyclic graph (DAG) or *scene graph*, but a disjoint union of strict trees. That is, no node may be a direct descendant of more than one node. This restriction is meant to simplify implementation and facilitate conformance.
 
-> 버전 2.0 규격의 경우 glTF 노드 계층 구조는 방향성 비순환 그래프(DAG) 또는 *씬 그래프*가 아니라 엄격한 트리의 분리된 합집합이다. 즉, 어떤 노드도 둘 이상의 노드의 직계 후손이 될 수 없다. 이 제한은 구현을 단순화하고 적합성을 용이하게 하기 위한 것이다.
+> 버전 2.0 규격의 경우 glTF 노드 계층 구조는 방향성 비순환 그래프(DAG) 또는 *장면 그래프*가 아니라 엄격한 트리의 분리된 합집합이다. 즉, 어떤 노드도 둘 이상의 노드의 직계 후손이 될 수 없다. 이 제한은 구현을 단순화하고 적합성을 용이하게 하기 위한 것이다.
 
-### Transformations
-
-### 변환
+### Transformations - 변환
 
 Any node can define a local space transformation either by supplying a `matrix` property, or any of `translation`, `rotation`, and `scale`  properties (also known as *TRS properties*). `translation` and `scale` are `FLOAT_VEC3` values in the local coordinate system. `rotation` is a `FLOAT_VEC4` unit quaternion value, `(x, y, z, w)`, in the local coordinate system.
 
@@ -497,15 +479,15 @@ When `matrix` is defined, it must be decomposable to TRS. This implies that tran
 
 TRS properties are converted to matrices and postmultiplied in the `T * R * S` order to compose the transformation matrix; first the scale is applied to the vertices, then the rotation, and then the translation.
 
-TRS 속성은 행렬로 변환되고 변환 행렬을 구성하기 위해 `T * R * S` 순서로 사후 곱셈된다. 먼저 정점에 배율을 적용한 다음 회전, 변환을 적용한다.
+TRS 속성은 행렬로 변환되고 변환 행렬을 구성하기 위해 `T * R * S` 순서로 사후 곱셈된다. 먼저 버텍스에 배율을 적용한 다음 회전, 변환을 적용한다.
 
 When a node is targeted for animation (referenced by an `animation.channel.target`), only TRS properties may be present; `matrix` will not be present. 
 
-노드가 애니메이션의 대상인 경우(`animation.channel.target`에서 참조됨) TRS 속성만 존재할 수 있다. '매트릭스'가 표시되지 않는다.
+노드가 애니메이션의 대상인 경우(`animation.channel.target`에서 참조됨) TRS 속성만 존재할 수 있다. `matrix`가 표시되지 않는다.
 
 > **Implementation Note:** If the determinant of the transform is a negative value, the winding order of the mesh triangle faces should be reversed. This supports negative scales for mirroring geometry.
 
-> **구현 참고 사항:** 변환의 결정 요인이 음수 값인 경우 메쉬 삼각형 면의 감기 순서를 반대로 해야 한다. 미러링 지오메트리에 대해 음수 축척을 지원한다.
+> **구현 참고 사항:** 변환의 결정 요인이 음수 값인 경우 메쉬 삼각형 면의 감기 순서를 반대로 해야 한다. 미러링 기하 형상에 대해 음수 축척을 지원한다.
 
 > **Implementation Note:** Non-invertible transformations (e.g., scaling one axis to zero) could lead to lighting and/or visibility artifacts.
 
@@ -574,21 +556,17 @@ The next example defines the transformation for a node with attached camera usin
 }
 ```
 
-## Binary Data Storage
+## Binary Data Storage - 바이너리 데이터 저장
 
-## 바이너리 데이터 저장
-
-### Buffers and Buffer Views
-
-### 버퍼 및 버퍼 뷰
+### Buffers and Buffer Views - 버퍼 및 버퍼 뷰
 
 A *buffer* is data stored as a binary blob. The buffer can contain a combination of geometry, animation, and skins.
 
-*버퍼*는 바이너리 블롭으로 저장된 데이터다. 버퍼는 지오메트리, 애니메이션 및 스킨의 조합을 포함할 수 있다.
+*버퍼*는 바이너리 blob으로 저장된 데이터다. 버퍼는 기하 형상, 애니메이션 및 스킨의 조합을 포함할 수 있다.
 
 Binary blobs allow efficient creation of GPU buffers and textures since they require no additional parsing, except perhaps decompression. An asset can have any number of buffer files for flexibility for a wide array of applications.
 
-바이너리 Blob은 압축 해제를 제외하고 추가 구문 분석이 필요하지 않기 때문에 GPU 버퍼 및 텍스처를 효율적으로 생성할 수 있다. 자산에는 다양한 응용 프로그램에 대한 유연성을 위해 원하는 수의 버퍼 파일이 있을 수 있다.
+바이너리 blob은 압축 해제를 제외하고 추가 구문 분석이 필요하지 않기 때문에 GPU 버퍼 및 텍스처를 효율적으로 생성할 수 있다. 자산에는 다양한 응용 프로그램에 대한 유연성을 위해 원하는 수의 버퍼 파일이 있을 수 있다.
 
 > **Implementation Note:** While there's no upper limit on buffer's size, implementations should be aware that JSON parsers may support integers only up to 2<sup>53</sup> when running on certain platforms. Also there's an implicit limit of 2<sup>32</sup>-1 bytes when a buffer is stored as [GLB](#glb-file-format-specification) binary chunk.
 
@@ -619,7 +597,7 @@ The following example defines a buffer. The `byteLength` property specifies the 
 
 A *bufferView* represents a subset of data in a buffer, defined by a byte offset into the buffer specified in the `byteOffset` property and a total byte length specified by the `byteLength` property of the buffer view.
 
-*bufferView*는 'byteOffset' 속성에 지정된 버퍼에 대한 바이트 오프셋과 버퍼 보기의 'byteLength' 속성에 지정된 총 바이트 길이로 정의된 버퍼에 있는 데이터의 하위 집합을 나타낸다.
+*bufferView*는 `byteOffset` 속성에 지정된 버퍼에 대한 바이트 오프셋과 버퍼 보기의 `byteLength` 속성에 지정된 총 바이트 길이로 정의된 버퍼에 있는 데이터의 하위 집합을 나타낸다.
 
 When a buffer view contain vertex indices or attributes, they must be its only content, i.e., it's invalid to have more than one kind of data in the same buffer view.
 
@@ -627,11 +605,11 @@ When a buffer view contain vertex indices or attributes, they must be its only c
 
 > **Implementation Note:** This allows a runtime to upload buffer view data to the GPU without any additional processing. When `bufferView.target` is defined, runtime must use it to determine data usage, otherwise it could be inferred from mesh' accessor objects.
 
-> **구현 참고 사항:** 이렇게 하면 런타임에서 추가 처리 없이 GPU에 버퍼 뷰 데이터를 업로드할 수 있다. `bufferView.target`이 정의되면 런타임은 이를 사용하여 데이터 사용량을 결정해야 한다. 그렇지 않으면 메쉬의 접근자 개체에서 유추될 수 있다.
+> **구현 참고 사항:** 이렇게 하면 런타임에서 추가 처리 없이 GPU에 버퍼 뷰 데이터를 업로드할 수 있다. `bufferView.target`이 정의되면 런타임은 이를 사용하여 데이터 사용량을 결정해야 한다. 그렇지 않으면 메쉬의 억세서 개체에서 유추될 수 있다.
 
 The following example defines two buffer views: the first is an ELEMENT_ARRAY_BUFFER, which holds the indices for an indexed triangle set, and the second is an ARRAY_BUFFER that holds the vertex data for the triangle set.
 
-다음 예제에서는 두 개의 버퍼 보기를 정의한다. 첫 번째는 인덱스 삼각형 세트에 대한 인덱스를 보유하는 ELEMENT_ARRAY_BUFFER이고 두 번째는 삼각형 세트에 대한 정점 데이터를 보유하는 ARRAY_BUFFER다.
+다음 예제에서는 두 개의 버퍼 보기를 정의한다. 첫 번째는 인덱스 삼각형 세트에 대한 인덱스를 보유하는 ELEMENT_ARRAY_BUFFER이고 두 번째는 삼각형 세트에 대한 버텍스 데이터를 보유하는 ARRAY_BUFFER다.
 
 ```json
 {
@@ -655,19 +633,17 @@ The following example defines two buffer views: the first is an ELEMENT_ARRAY_BU
 
 When a buffer view is used for vertex attribute data, it may have a `byteStride` property. This property defines the stride in bytes between each vertex.
 
-버텍스 속성 데이터에 버퍼 뷰가 사용되면 `byteStride` 속성이 있을 수 있다. 이 속성은 각 정점 사이의 보폭(바이트)을 정의한다.
+버텍스 속성 데이터에 버퍼 뷰가 사용되면 `byteStride` 속성이 있을 수 있다. 이 속성은 각 버텍스 사이의 보폭(바이트)을 정의한다.
 
 Buffers and buffer views do not contain type information. They simply define the raw data for retrieval from the file. Objects within the glTF file (meshes, skins, animations) access buffers or buffer views via *accessors*.
 
-버퍼 및 버퍼 보기에는 유형 정보가 포함되지 않다. 단순히 파일에서 검색할 원시 데이터를 정의한다. glTF 파일 내의 객체(메시, 스킨, 애니메이션)는 *접근자*를 통해 버퍼 또는 버퍼 보기에 액세스한다.
+버퍼 및 버퍼 보기에는 유형 정보가 포함되지 않다. 단순히 파일에서 검색할 원시 데이터를 정의한다. glTF 파일 내의 객체(메쉬, 스킨, 애니메이션)는 *억세서*를 통해 버퍼 또는 버퍼 보기에 액세스한다.
 
-#### GLB-stored Buffer
-
-#### GLB 저장 버퍼
+#### GLB-stored Buffer - GLB 저장 버퍼
 
 glTF asset could use GLB file container to pack all resources into one file. glTF Buffer referring to GLB-stored `BIN` chunk, must have `buffer.uri` property undefined, and it must be the first element of `buffers` array; byte length of `BIN` chunk could be up to 3 bytes bigger than JSON-defined `buffer.byteLength` to satisfy GLB padding requirements. Any glTF Buffer with undefined `buffer.uri` property that is not the first element of `buffers` array does not refer to the GLB-stored BIN chunk, and the behavior of such buffers is left undefined to accommodate future extensions and specification versions.
 
-glTF 자산은 GLB 파일 컨테이너를 사용하여 모든 리소스를 하나의 파일로 압축할 수 있다. glTF 버퍼는 GLB에 저장된 `BIN` 청크를 참조하며 `buffer.uri` 속성이 정의되지 않아야 하며 `buffers` 배열의 첫 번째 요소여야 한다. GLB 패딩 요구 사항을 충족하기 위해 `BIN` 청크의 바이트 길이는 JSON 정의 `buffer.byteLength`보다 최대 3바이트 더 클 수 있다. 'buffers' 배열의 첫 번째 요소가 아닌 정의되지 않은 'buffer.uri' 속성이 있는 glTF 버퍼는 GLB에 저장된 BIN 청크를 참조하지 않으며 이러한 버퍼의 동작은 향후 확장 및 사양 버전을 수용하기 위해 정의되지 않은 상태로 남는다.
+glTF 자산은 GLB 파일 컨테이너를 사용하여 모든 리소스를 하나의 파일로 압축할 수 있다. glTF 버퍼는 GLB에 저장된 `BIN` 청크를 참조하며 `buffer.uri` 속성이 정의되지 않아야 하며 `buffers` 배열의 첫 번째 요소여야 한다. GLB 패딩 요구 사항을 충족하기 위해 `BIN` 청크의 바이트 길이는 JSON 정의 `buffer.byteLength`보다 최대 3바이트 더 클 수 있다. `buffers` 배열의 첫 번째 요소가 아닌 정의되지 않은 `buffer.uri` 속성이 있는 glTF 버퍼는 GLB에 저장된 BIN 청크를 참조하지 않으며 이러한 버퍼의 동작은 향후 확장 및 사양 버전을 수용하기 위해 정의되지 않은 상태로 남는다.
 
 > **Implementation Note:**  Not requiring strict equality of chunk's and buffer's lengths simplifies glTF to GLB conversion a bit: implementations don't need to update `buffer.byteLength` after applying GLB padding.
 
@@ -695,25 +671,23 @@ See [GLB File Format Specification](#glb-file-format-specification) for details 
 
 GLB 파일 형식에 대한 자세한 내용은 [GLB 파일 형식 사양](#glb-file-format-specification)을 참조하자.
 
-### Accessors
-
-### 접근자
+### Accessors - 억세서
 
 All large data for meshes, skins, and animations is stored in buffers and retrieved via accessors.
 
-메쉬, 스킨 및 애니메이션에 대한 모든 대용량 데이터는 버퍼에 저장되고 접근자를 통해 검색된다.
+메쉬, 스킨 및 애니메이션에 대한 모든 대용량 데이터는 버퍼에 저장되고 억세서를 통해 검색된다.
 
 An *accessor* defines a method for retrieving data as typed arrays from within a `bufferView`. The accessor specifies a component type (e.g. `5126 (FLOAT)`) and a data type (e.g. `VEC3`), which when combined define the complete data type for each array element. The accessor also specifies the location and size of the data within the `bufferView` using the properties `byteOffset` and `count`. The latter specifies the number of elements within the `bufferView`, *not* the number of bytes. Elements could be, e.g., vertex indices, vertex attributes, animation keyframes, etc.
 
-*접근자*는 `bufferView` 내에서 유형이 지정된 배열로 데이터를 검색하는 방법을 정의한다. 접근자는 구성 요소 유형(예: `5126 (FLOAT)`) 및 데이터 유형(예: `VEC3`)을 지정하며, 결합 시 각 배열 요소에 대한 완전한 데이터 유형을 정의한다. 또한 접근자는 'byteOffset' 및 'count' 속성을 사용하여 'bufferView' 내 데이터의 위치와 크기를 지정한다. 후자는 바이트 수가 *아닌* `bufferView` 내의 요소 수를 지정한다. 요소는 정점 인덱스, 정점 속성, 애니메이션 키프레임 등이 될 수 있다.
+*억세서*는 `bufferView` 내에서 유형이 지정된 배열로 데이터를 검색하는 방법을 정의한다. 억세서는 구성 요소 유형(예: `5126 (FLOAT)`) 및 데이터 유형(예: `VEC3`)을 지정하며, 결합 시 각 배열 요소에 대한 완전한 데이터 유형을 정의한다. 또한 억세서는 `byteOffset` 및 `count` 속성을 사용하여 `bufferView` 내 데이터의 위치와 크기를 지정한다. 후자는 바이트 수가 *아닌* `bufferView` 내의 요소 수를 지정한다. 요소는 버텍스 인덱스, 버텍스 속성, 애니메이션 키프레임 등이 될 수 있다.
 
 All accessors are stored in the asset's `accessors` array.
 
-모든 접근자는 자산의 '접속자' 배열에 저장된다.
+모든 억세서는 자산의 `accessors` 배열에 저장된다.
 
 The following fragment shows two accessors, the first is a scalar accessor for retrieving a primitive's indices, and the second is a 3-float-component vector accessor for retrieving the primitive's position data.
 
-다음 조각은 두 개의 접근자를 보여준다. 첫 번째는 프리미티브의 인덱스를 검색하기 위한 스칼라 접근자이고, 두 번째는 프리미티브의 위치 데이터를 검색하기 위한 3-플로트 구성 요소 벡터 접근자다.
+다음 조각은 두 개의 억세서를 보여준다. 첫 번째는 프리미티브의 인덱스를 검색하기 위한 스칼라 억세서이고, 두 번째는 프리미티브의 위치 데이터를 검색하기 위한 3-플로트 구성 요소 벡터 억세서이다.
 
 ```json
 {
@@ -752,9 +726,7 @@ The following fragment shows two accessors, the first is a scalar accessor for r
 }
 ```
 
-#### Floating-Point Data
-
-#### 부동 소수점 데이터
+#### Floating-Point Data - 부동 소수점 데이터
 
 Data of `5126 (FLOAT)` componentType must use IEEE-754 single precision format. 
 
@@ -764,13 +736,11 @@ Values of `NaN`, `+Infinity`, and `-Infinity` are not allowed.
 
 `NaN`, `+Infinity` 및 `-Infinity` 값은 허용되지 않는다.
 
-#### Accessor Element Size
-
-#### 접근자 요소 크기
+#### Accessor Element Size - 억세서 요소 크기
 
 The following tables can be used to compute the size of element accessible by accessor.
 
-다음 표는 접근자가 액세스할 수 있는 요소의 크기를 계산하는 데 사용할 수 있다.
+다음 표는 억세서가 액세스할 수 있는 요소의 크기를 계산하는 데 사용할 수 있다.
 
 | `componentType` | Size in bytes |
 |:---------------:|:-------------:|
@@ -795,7 +765,7 @@ Element size, in bytes, is
 `(size in bytes of the 'componentType') * (number of components defined by 'type')`.
 
 요소 크기(바이트)는
-`('componentType'의 바이트 크기) * ('type'에 의해 정의된 구성 요소의 수)`이다.
+`(size in bytes of the 'componentType') * (number of components defined by 'type')`이다.
 
 For example:
 
@@ -817,15 +787,13 @@ For example:
 
 In this accessor, the `componentType` is `5126` (FLOAT), so each component is four bytes.  The `type` is `"VEC3"`, so there are three components.  The size of each element is 12 bytes (`4 * 3`).
 
-이 접근자에서 `componentType`은 `5126`(FLOAT)이므로 각 구성 요소는 4바이트다. `유형`은 `"VEC3"`이므로 세 가지 구성 요소가 있다. 각 요소의 크기는 12바이트(`4 * 3`)다.
+이 억세서에서 `componentType`은 `5126`(FLOAT)이므로 각 구성 요소는 4바이트다. `type`은 `"VEC3"`이므로 세 가지 구성 요소가 있다. 각 요소의 크기는 12바이트(`4 * 3`)이다.
 
-#### Accessors Bounds
-
-#### 접근자 범위
+#### Accessors Bounds - 억세서 범위
 
 `accessor.min` and `accessor.max` properties are arrays that contain per-component minimum and maximum values, respectively. Exporters and loaders must treat these values as having the same data type as accessor's `componentType`, i.e., use integers (JSON number without fractional part) for integer types and use floating-point decimals for `5126` (FLOAT).
 
-`accessor.min` 및 `accessor.max` 속성은 각각 구성 요소별 최소값과 최대값을 포함하는 배열이다. 내보내기 및 로더는 이러한 값을 접근자의 `componentType`과 동일한 데이터 유형으로 처리해야 한다. 즉, 정수 유형에는 정수(소수 부분이 없는 JSON 번호)를 사용하고 `5126`(FLOAT)에는 부동 소수점 소수점을 사용해야 한다.
+`accessor.min` 및 `accessor.max` 속성은 각각 구성 요소별 최소값과 최대값을 포함하는 배열이다. 내보내기 및 로더는 이러한 값을 억세서의 `componentType`과 동일한 데이터 유형으로 처리해야 한다. 즉, 정수 유형에는 정수(소수 부분이 없는 JSON 번호)를 사용하고 `5126`(FLOAT)에는 부동 소수점 소수점을 사용해야 한다.
 
 > **Implementation Note:** JavaScript client implementations should convert JSON-parsed floating-point doubles to single precision, when `componentType` is `5126` (FLOAT). This could be done with `Math.fround` function.
 
@@ -833,17 +801,15 @@ In this accessor, the `componentType` is `5126` (FLOAT), so each component is fo
 
 While these properties are not required for all accessor usages, there are cases when minimum and maximum must be defined. Refer to other sections of this specification for details. 
 
-이러한 속성이 모든 접근자 사용에 필요한 것은 아니지만 최소값과 최대값을 정의해야 하는 경우가 있다. 자세한 내용은 이 사양의 다른 섹션을 참조하자.
+이러한 속성이 모든 억세서 사용에 필요한 것은 아니지만 최소값과 최대값을 정의해야 하는 경우가 있다. 자세한 내용은 이 사양의 다른 섹션을 참조하자.
 
-#### Sparse Accessors
-
-#### 희소 접근자
+#### Sparse Accessors - 희소 억세서
 
 Sparse encoding of arrays is often more memory-efficient than dense encoding when describing incremental changes with respect to a reference array.
 This is often the case when encoding morph targets (it is, in general, more efficient to describe a few displaced vertices in a morph target than transmitting all morph target vertices).
 
 배열의 희소 인코딩은 참조 배열과 관련된 증분 변경 사항을 설명할 때 조밀 인코딩보다 메모리 효율성이 더 높은 경우가 많다.
-이는 모프 대상을 인코딩할 때 종종 발생한다(일반적으로 모든 모프 대상 정점을 전송하는 것보다 모프 대상에서 변위된 정점 몇 개를 설명하는 것이 더 효율적이다).
+이는 모핑 타겟을 인코딩할 때 종종 발생한다(일반적으로 모든 모핑 타겟 버텍스를 전송하는 것보다 모핑 타겟에서 변위된 버텍스 몇 개를 설명하는 것이 더 효율적이다).
 
 glTF 2.0 extends the accessor structure to enable efficient transfer of sparse arrays.
 Similarly to a standard accessor, a sparse accessor initializes an array of typed elements from data stored in a `bufferView` . On top of that, a sparse accessor includes a `sparse` dictionary describing the elements that deviate from their initialization value. The `sparse` dictionary contains the following mandatory properties:
@@ -851,15 +817,15 @@ Similarly to a standard accessor, a sparse accessor initializes an array of type
 - `indices`: strictly increasing array of integers of size `count` and specific `componentType` that stores the indices of those elements that deviate from the initialization value.
 - `values`: array of displaced elements corresponding to the indices in the `indices` array.
 
-glTF 2.0은 희소 배열을 효율적으로 전송할 수 있도록 접근자 구조를 확장한다.
-표준 접근자와 유사하게, 희소 접근자는 `bufferView` 에 저장된 데이터에서 유형이 지정된 요소의 배열을 초기화한다. 또한 희소 접근자는 초기화 값에서 벗어나는 요소를 설명하는 `sparse` 사전을 포함한다. `sparse` 사전에는 다음과 같은 필수 속성이 포함되어 있다.
+glTF 2.0은 희소 배열을 효율적으로 전송할 수 있도록 억세서 구조를 확장한다.
+표준 억세서와 유사하게, 희소 억세서는 `bufferView` 에 저장된 데이터에서 유형이 지정된 요소의 배열을 초기화한다. 또한 희소 억세서는 초기화 값에서 벗어나는 요소를 설명하는 `sparse` 사전을 포함한다. `sparse` 사전에는 다음과 같은 필수 속성이 포함되어 있다.
 - `count`: 대체된 요소의 수다.
 - `indices`: 초기화 값에서 벗어나는 요소의 인덱스를 저장하는 `count` 및 특정 `componentType` 크기의 정수 배열을 엄격하게 증가시킨다.
 - `values`: `indices` 배열의 인덱스에 해당하는 대체된 요소의 배열이다.
 
 The following fragment shows an example of `sparse` accessor with 10 elements deviating from the initialization array.
 
-다음 프래그먼트는 초기화 배열에서 벗어난 10개의 요소가 있는 `sparse` 접근자의 예를 보여준다.
+다음 프래그먼트는 초기화 배열에서 벗어난 10개의 요소가 있는 `sparse` 억세서의 예를 보여준다.
 
 ```json
 {
@@ -889,36 +855,34 @@ The following fragment shows an example of `sparse` accessor with 10 elements de
 A sparse accessor differs from a regular one in that `bufferView` property isn't required. When it's omitted, the sparse accessor is initialized as an array of zeros of size `(size of the accessor element) * (accessor.count)` bytes.
 A sparse accessor `min` and `max` properties correspond, respectively, to the minimum and maximum component values once the sparse substitution is applied.
 
-스파스 접근자는 `bufferView` 속성이 필요하지 않다는 점에서 일반 접근자와 다르다. 생략되면 희소 접근자는 `(접근자 요소의 크기) * (accessor.count)` 바이트 크기의 0 배열로 초기화된다.
-희소 접근자 `min` 및 `max` 속성은 희소 대체가 적용되면 각각 최소 및 최대 구성 요소 값에 해당한다.
+희소 억세서는 `bufferView` 속성이 필요하지 않다는 점에서 일반 억세서와 다르다. 생략되면 희소 억세서는 `(size of the accessor element) * (accessor.count)` 바이트 크기의 0 배열로 초기화된다.
+희소 억세서 `min` 및 `max` 속성은 희소 대체가 적용되면 각각 최소 및 최대 구성 요소 값에 해당한다.
 
 When neither `sparse` nor `bufferView` is defined, `min` and `max` properties could have any values. This is intended for use cases when binary data is supplied by external means (e.g., via extensions).
 
 `sparse`와 `bufferView`가 모두 정의되지 않은 경우 `min` 및 `max` 속성은 모든 값을 가질 수 있다. 이는 바이너리 데이터가 외부 수단(예: 확장을 통해)으로 제공되는 사용 사례를 위한 것이다.
 
-#### Data Alignment
-
-#### 데이터 정렬
+#### Data Alignment - 데이터 정렬
 
 The offset of an `accessor` into a `bufferView` (i.e., `accessor.byteOffset`) and the offset of an `accessor` into a `buffer` (i.e., `accessor.byteOffset + bufferView.byteOffset`) must be a multiple of the size of the accessor's component type.
 
-`bufferView`에 대한 `accessor`의 오프셋(즉, `accessor.byteOffset`)과 `buffer`에 대한 `accessor`의 오프셋(즉, `accessor.byteOffset + bufferView.byteOffset`)은 접근자의 구성 요소 유형 크기의 배수가 되어야 한다.
+`bufferView`에 대한 `accessor`의 오프셋(즉, `accessor.byteOffset`)과 `buffer`에 대한 `accessor`의 오프셋(즉, `accessor.byteOffset + bufferView.byteOffset`)은 억세서의 구성 요소 유형 크기의 배수가 되어야 한다.
 
 When `byteStride` of referenced `bufferView` is not defined, it means that accessor elements are tightly packed, i.e., effective stride equals the size of the element. When `byteStride` is defined, it must be a multiple of the size of the accessor's component type. `byteStride` must be defined, when two or more accessors use the same `bufferView`.
 
-참조된 `bufferView`의 `byteStride`가 정의되지 않은 경우 이는 접근자 요소가 단단히 압축되었음을 의미한다. 즉, 유효 스트라이드는 요소의 크기와 같다. `byteStride`가 정의되면 접근자의 구성 요소 유형 크기의 배수여야 한다. 둘 이상의 접근자가 동일한 `bufferView`를 사용하는 경우 `byteStride`를 정의해야 한다.
+참조된 `bufferView`의 `byteStride`가 정의되지 않은 경우 이는 억세서 요소가 단단히 압축되었음을 의미한다. 즉, 유효 스트라이드는 요소의 크기와 같다. `byteStride`가 정의되면 억세서의 구성 요소 유형 크기의 배수여야 한다. 둘 이상의 억세서가 동일한 `bufferView`를 사용하는 경우 `byteStride`를 정의해야 한다.
 
 Each `accessor` must fit its `bufferView`, i.e., `accessor.byteOffset + STRIDE * (accessor.count - 1) + SIZE_OF_ELEMENT` must be less than or equal to `bufferView.length`.
 
-각 `접속자`는 해당 `bufferView`에 맞아야 한다. 즉, `accessor.byteOffset + STRIDE * (accessor.count - 1) + SIZE_OF_ELEMENT`는 `bufferView.length`보다 작거나 같아야 한다.
+각 `accessor`는 해당 `bufferView`에 맞아야 한다. 즉, `accessor.byteOffset + STRIDE * (accessor.count - 1) + SIZE_OF_ELEMENT`는 `bufferView.length`보다 작거나 같아야 한다.
 
 For performance and compatibility reasons, each element of a vertex attribute must be aligned to 4-byte boundaries inside `bufferView` (i.e., `accessor.byteOffset` and `bufferView.byteStride` must be multiples of 4).
 
-성능 및 호환성상의 이유로 정점 속성의 각 요소는 `bufferView` 내부의 4바이트 경계에 정렬되어야 한다(즉, `accessor.byteOffset` 및 `bufferView.byteStride`는 4의 배수여야 한다.).
+성능 및 호환성상의 이유로 버텍스 속성의 각 요소는 `bufferView` 내부의 4바이트 경계에 정렬되어야 한다(즉, `accessor.byteOffset` 및 `bufferView.byteStride`는 4의 배수여야 한다.).
 
 Accessors of matrix type have data stored in column-major order; start of each column must be aligned to 4-byte boundaries. To achieve this, three `type`/`componentType` combinations require special layout:
 
-행렬 유형의 접근자는 데이터가 열 우선 순서로 저장되어 있다. 각 열의 시작은 4바이트 경계로 정렬되어야 한다. 이를 달성하려면 세 가지 `type`/`componentType` 조합에 특별한 레이아웃이 필요하다.
+행렬 유형의 억세서는 데이터가 열 우선 순서로 저장되어 있다. 각 열의 시작은 4바이트 경계로 정렬되어야 한다. 이를 달성하려면 세 가지 `type`/`componentType` 조합에 특별한 레이아웃이 필요하다.
 
 **MAT2, 1-byte components**
 ```
@@ -993,24 +957,20 @@ var typedView = new Uint16Array(buffer, accessor.byteOffset + accessor.bufferVie
 
 The size of the accessor component type is two bytes (the `componentType` is unsigned short). The accessor's `byteOffset` is also divisible by two. Likewise, the accessor's offset into buffer `0` is `5228 ` (`620 + 4608`), which is divisible by two.
 
-접근자 구성 요소 유형의 크기는 2바이트다(`componentType`은 unsigned short다.). 접근자의 `byteOffset`도 2로 나눌 수 있다. 마찬가지로 버퍼 `0`에 대한 접근자의 오프셋은 `5228`(`620 + 4608`)이며 2로 나눌 수 있다.
+억세서 구성 요소 유형의 크기는 2바이트이다(`componentType`은 unsigned short다.). 억세서의 `byteOffset`도 2로 나눌 수 있다. 마찬가지로 버퍼 `0`에 대한 억세서의 오프셋은 `5228`(`620 + 4608`)이며 2로 나눌 수 있다.
 
 
-## Geometry
-
-## 지오메트리
+## Geometry - 기하 형상
 
 Any node can contain one mesh, defined in its `mesh` property. Mesh can be skinned using a information provided in referenced `skin` object. Mesh can have morph targets.
 
-모든 노드는 `mesh` 속성에 정의된 하나의 메쉬를 포함할 수 있다. 메쉬는 참조된 `skin` 객체에 제공된 정보를 사용하여 스키닝할 수 있다. 메쉬는 모프 타겟을 가질 수 있다.
+모든 노드는 `mesh` 속성에 정의된 하나의 메쉬를 포함할 수 있다. 메쉬는 참조된 `skin` 객체에 제공된 정보를 사용하여 스키닝할 수 있다. 메쉬는 모핑 타겟을 가질 수 있다.
 
-### Meshes
-
-### 메쉬
+### Meshes - 메쉬
 
 In glTF, meshes are defined as arrays of *primitives*. Primitives correspond to the data required for GPU draw calls. Primitives specify one or more `attributes`, corresponding to the vertex attributes used in the draw calls. Indexed primitives also define an `indices` property. Attributes and indices are defined as references to accessors containing corresponding data. Each primitive also specifies a material and a primitive type that corresponds to the GPU primitive type (e.g., triangle set).
 
-glTF에서 메쉬는 *원시체*의 배열로 정의된다. 프리미티브는 GPU 그리기 호출에 필요한 데이터에 해당한다. 프리미티브는 그리기 호출에 사용되는 정점 속성에 해당하는 하나 이상의 `attributes`를 지정한다. 인덱싱된 프리미티브는 `indices` 속성도 정의한다. 특성 및 인덱스는 해당 데이터를 포함하는 접근자에 대한 참조로 정의된다. 각 프리미티브는 또한 GPU 프리미티브 유형(예: 삼각형 집합)에 해당하는 재료 및 프리미티브 유형을 지정한다.
+glTF에서 메쉬는 *원시체*의 배열로 정의된다. 프리미티브는 GPU 그리기 호출에 필요한 데이터에 해당한다. 프리미티브는 그리기 호출에 사용되는 버텍스 속성에 해당하는 하나 이상의 `attributes`를 지정한다. 인덱싱된 프리미티브는 `indices` 속성도 정의한다. 특성 및 인덱스는 해당 데이터를 포함하는 억세서에 대한 참조로 정의된다. 각 프리미티브는 또한 GPU 프리미티브 유형(예: 삼각형 집합)에 해당하는 재료 및 프리미티브 유형을 지정한다.
 
 > **Implementation note:** Splitting one mesh into *primitives* could be useful to limit number of indices per draw call.
 
@@ -1048,7 +1008,7 @@ The following example defines a mesh containing one triangle set primitive:
 
 Each attribute is defined as a property of the `attributes` object. The name of the property corresponds to an enumerated value identifying the vertex attribute, such as `POSITION`. The value of the property is the index of an accessor that contains the data.
 
-각 속성은 `attributes` 객체의 속성으로 정의된다. 속성의 이름은 `POSITION`과 같이 정점 속성을 식별하는 열거된 값에 해당한다. 속성 값은 데이터를 포함하는 접근자의 인덱스다.
+각 속성은 `attributes` 객체의 속성으로 정의된다. 속성의 이름은 `POSITION`과 같이 버텍스 속성을 식별하는 열거된 값에 해당한다. 속성 값은 데이터를 포함하는 억세서의 인덱스다.
 
 Valid attribute semantic property names include `POSITION`, `NORMAL`, `TANGENT`, `TEXCOORD_0`, `TEXCOORD_1`, `COLOR_0`, `JOINTS_0`, and `WEIGHTS_0`.  Application-specific semantics must start with an underscore, e.g., `_TEMPERATURE`.
 
@@ -1056,7 +1016,7 @@ Valid attribute semantic property names include `POSITION`, `NORMAL`, `TANGENT`,
 
 Valid accessor type and component type for each attribute semantic property are defined below.
 
-각 속성 시맨틱 속성에 대한 유효한 접근자 유형 및 구성 요소 유형은 아래에 정의되어 있다.
+각 속성 시맨틱 속성에 대한 유효한 억세서 유형 및 구성 요소 유형은 아래에 정의되어 있다.
 
 |Name|Accessor Type(s)|Component Type(s)|Description|
 |----|----------------|-----------------|-----------|
@@ -1071,11 +1031,11 @@ Valid accessor type and component type for each attribute semantic property are 
 
 `POSITION` accessor **must** have `min` and `max` properties defined.
 
-`POSITION` 접근자는 **반드시** `min` 및 `max` 속성이 정의되어 있어야 한다.
+`POSITION` 억세서는 **반드시** `min` 및 `max` 속성이 정의되어 있어야 한다.
 
 `TEXCOORD`, `COLOR`, `JOINTS`, and `WEIGHTS` attribute semantic property names must be of the form `[semantic]_[set_index]`, e.g., `TEXCOORD_0`, `TEXCOORD_1`, `COLOR_0`. Client implementations must support at least two UV texture coordinate sets, one vertex color, and one joints/weights set. Extensions can add additional property names, accessor types, and/or accessor component types.
 
-`TEXCOORD`, `COLOR`, `JOINTS` 및 `WEIGHTS` 속성 시맨틱 속성 이름은 `[semantic]_[set_index]` 형식이어야 한다(예: `TEXCOORD_0`, `TEXCOORD_1`, `COLOR_0`). 클라이언트 구현은 최소 두 개의 UV 텍스처 좌표 세트, 하나의 정점 색상 및 하나의 관절/가중치 집합을 지원해야 한다. 확장은 추가 속성 이름, 접근자 유형 및/또는 접근자 구성 요소 유형을 추가할 수 있다.
+`TEXCOORD`, `COLOR`, `JOINTS` 및 `WEIGHTS` 속성 시맨틱 속성 이름은 `[semantic]_[set_index]` 형식이어야 한다(예: `TEXCOORD_0`, `TEXCOORD_1`, `COLOR_0`). 클라이언트 구현은 최소 두 개의 UV 텍스처 좌표 세트, 하나의 버텍스 색상 및 하나의 관절/가중치 집합을 지원해야 한다. 확장은 추가 속성 이름, 억세서 유형 및/또는 억세서 구성 요소 유형을 추가할 수 있다.
 
 All indices for indexed attribute semantics must start with 0 and be continuous positive integers: `TEXCOORD_0`, `TEXCOORD_1`, etc. Indices must not use leading zeroes to pad the number of digits, and clients are not required to support more indexed semantics than described above.
 
@@ -1083,11 +1043,11 @@ All indices for indexed attribute semantics must start with 0 and be continuous 
 
 > **Implementation note:** Each primitive corresponds to one WebGL draw call (engines are, of course, free to batch draw calls). When a primitive's `indices` property is defined, it references the accessor to use for index data, and GL's `drawElements` function should be used. When the `indices` property is not defined, GL's `drawArrays` function should be used with a count equal to the count property of any of the accessors referenced by the `attributes` property (they are all equal for a given primitive).
 
-> **구현 참고 사항:** 각 프리미티브는 하나의 WebGL 드로우 콜에 해당한다(물론 엔진은 일괄 드로우 콜에 무료다). 프리미티브의 `indices` 속성이 정의되면 인덱스 데이터에 사용할 접근자를 참조하며 GL의 `drawElements` 함수를 사용해야 한다. `indices` 속성이 정의되지 않은 경우 GL의 `drawArrays` 함수는 `attributes` 속성이 참조하는 모든 접근자의 count 속성과 동일한 count와 함께 사용해야 한다(주어진 프리미티브에 대해 모두 동일하다.).
+> **구현 참고 사항:** 각 프리미티브는 하나의 WebGL 드로우 콜에 해당한다(물론 엔진은 일괄 드로우 콜에 무료다). 프리미티브의 `indices` 속성이 정의되면 인덱스 데이터에 사용할 억세서를 참조하며 GL의 `drawElements` 함수를 사용해야 한다. `indices` 속성이 정의되지 않은 경우 GL의 `drawArrays` 함수는 `attributes` 속성이 참조하는 모든 억세서의 count 속성과 동일한 count와 함께 사용해야 한다(주어진 프리미티브에 대해 모두 동일하다.).
 
 > **Implementation note:** When positions are not specified, client implementations should skip primitive's rendering unless its positions are provided by other means (e.g., by extension). This applies to both indexed and non-indexed geometry.
 
-> **구현 참고 사항:** 위치가 지정되지 않은 경우 클라이언트 구현은 다른 방법(예: 확장)에 의해 위치가 제공되지 않는 한 프리미티브의 렌더링을 건너뛰어야 한다. 이는 인덱스 및 비인덱스 지오메트리 모두에 적용된다.
+> **구현 참고 사항:** 위치가 지정되지 않은 경우 클라이언트 구현은 다른 방법(예: 확장)에 의해 위치가 제공되지 않는 한 프리미티브의 렌더링을 건너뛰어야 한다. 이는 인덱스 및 비인덱스 기하 형상 모두에 적용된다.
 
 > **Implementation note:** When normals are not specified, client implementations should calculate flat normals.
 
@@ -1099,7 +1059,7 @@ All indices for indexed attribute semantics must start with 0 and be continuous 
 
 > **Implementation note:** Vertices of the same triangle should have the same `tangent.w` value. When vertices of the same triangle have different `tangent.w` values, tangent space is considered undefined.
 
-> **구현 참고 사항:** 동일한 삼각형의 정점은 동일한 `tangent.w` 값을 가져야 한다. 같은 삼각형의 정점이 서로 다른 `tangent.w` 값을 가질 때 접선 공간은 정의되지 않은 것으로 간주된다.
+> **구현 참고 사항:** 동일한 삼각형의 버텍스는 동일한 `tangent.w` 값을 가져야 한다. 같은 삼각형의 버텍스가 서로 다른 `tangent.w` 값을 가질 때 접선 공간은 정의되지 않은 것으로 간주된다.
 
 > **Implementation note:** When normals and tangents are specified, client implementations should compute the bitangent by taking the cross product of the normal and tangent xyz vectors and multiplying against the w component of the tangent: `bitangent = cross(normal, tangent.xyz) * tangent.w`
 
